@@ -1,54 +1,54 @@
 {
   "header": {
-    "back": "Back",
-    "log_out": "Log out"
+    "back": "Indietro",
+    "log_out": "Esci"
   },
   "not_found": {
-    "title": "Invitation not found",
-    "description": "This invitation may have expired, been revoked, or doesn't belong to your account.",
-    "go_to_dashboard": "Go to dashboard"
+    "title": "Invito non trovato",
+    "description": "Questo invito potrebbe essere scaduto, revocato, o non appartenere al tuo account.",
+    "go_to_dashboard": "Vai alla dashboard"
   },
   "accepted": {
-    "title": "You joined {{workspace_name}}!",
-    "redirecting": "Redirecting to workspace..."
+    "title": "Sei entrato in {{workspace_name}}!",
+    "redirecting": "Reindirizzamento al workspace..."
   },
   "declined": {
-    "title": "Invitation declined",
-    "description": "You won't be added to this workspace.",
-    "go_to_dashboard": "Go to dashboard"
+    "title": "Invito rifiutato",
+    "description": "Non verrai aggiunto a questo workspace.",
+    "go_to_dashboard": "Vai alla dashboard"
   },
   "main": {
-    "join_title": "Join {{workspace_name}}",
+    "join_title": "Entra in {{workspace_name}}",
     "fallback_workspace_name": "workspace",
-    "invited_role_admin": "invited you to join as an admin.",
-    "invited_role_member": "invited you to join as a member.",
-    "already_handled_accepted": "This invitation has already been accepted.",
-    "already_handled_declined": "This invitation has already been declined.",
-    "expired": "This invitation has expired.",
-    "decline": "Decline",
-    "declining": "Declining...",
-    "accept": "Accept & Join",
-    "joining": "Joining..."
+    "invited_role_admin": "ti ha invitato a entrare come amministratore.",
+    "invited_role_member": "ti ha invitato a entrare come membro.",
+    "already_handled_accepted": "Questo invito è già stato accettato.",
+    "already_handled_declined": "Questo invito è già stato rifiutato.",
+    "expired": "Questo invito è scaduto.",
+    "decline": "Rifiuta",
+    "declining": "Rifiuto...",
+    "accept": "Accetta ed entra",
+    "joining": "Ingresso..."
   },
   "errors": {
-    "accept_failed": "Failed to accept invitation",
-    "decline_failed": "Failed to decline invitation"
+    "accept_failed": "Non è stato possibile accettare l'invito",
+    "decline_failed": "Non è stato possibile rifiutare l'invito"
   },
   "batch": {
-    "log_out": "Log out",
-    "empty_title": "No pending invitations",
-    "empty_hint": "Continue to set up your own workspace.",
-    "empty_continue": "Continue to setup",
-    "title": "You've been invited",
-    "subtitle": "Pick the workspaces you want to join. You can always handle the rest later from the sidebar.",
-    "submit_skip": "Skip and set up my own workspace",
-    "submit_join_one": "Join 1 workspace",
-    "submit_join_other": "Join {{count}} workspaces",
-    "joining": "Joining...",
-    "error_generic": "Failed to process invitations. Please try again.",
+    "log_out": "Esci",
+    "empty_title": "Nessun invito in attesa",
+    "empty_hint": "Continua per creare il tuo workspace.",
+    "empty_continue": "Continua con la configurazione",
+    "title": "Sei stato invitato",
+    "subtitle": "Scegli i workspace in cui vuoi entrare. Gli altri li gestisci quando vuoi dalla barra laterale.",
+    "submit_skip": "Salta e crea il mio workspace",
+    "submit_join_one": "Entra in 1 workspace",
+    "submit_join_other": "Entra in {{count}} workspace",
+    "joining": "Ingresso...",
+    "error_generic": "Non è stato possibile elaborare gli inviti. Riprova.",
     "row_workspace_fallback": "Workspace",
-    "row_inviter_fallback": "Someone",
-    "row_invited_admin": "{{inviter}} invited you as an admin",
-    "row_invited_member": "{{inviter}} invited you as a member"
+    "row_inviter_fallback": "Qualcuno",
+    "row_invited_admin": "{{inviter}} ti ha invitato come amministratore",
+    "row_invited_member": "{{inviter}} ti ha invitato come membro"
   }
 }

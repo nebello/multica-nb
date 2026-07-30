@@ -1,46 +1,46 @@
 {
-  "title": "Search",
-  "description": "Search pages, issues, projects, and members",
-  "placeholder": "Type a command or search...",
+  "title": "Cerca",
+  "description": "Cerca fra pagine, issue, progetti e membri",
+  "placeholder": "Scrivi un comando o cerca...",
   "groups": {
-    "pages": "Pages",
-    "commands": "Commands",
-    "members": "Members",
-    "projects": "Projects",
-    "issues": "Issues",
-    "recent": "Recent"
+    "pages": "Pagine",
+    "commands": "Comandi",
+    "members": "Membri",
+    "projects": "Progetti",
+    "issues": "Issue",
+    "recent": "Recenti"
   },
   "pages": {
     "inbox": "Inbox",
-    "my_issues": "My Issues",
-    "issues": "Issues",
-    "projects": "Projects",
-    "agents": "Agents",
-    "runtimes": "Runtimes",
-    "skills": "Skills",
-    "settings": "Settings"
+    "my_issues": "Le mie issue",
+    "issues": "Issue",
+    "projects": "Progetti",
+    "agents": "Agenti",
+    "runtimes": "Runtime",
+    "skills": "Skill",
+    "settings": "Impostazioni"
   },
   "commands": {
-    "current_theme_aria": "Current theme",
-    "new_issue": "New Issue",
-    "new_project": "New Project",
-    "copy_issue_link": "Copy Issue Link",
-    "copy_identifier": "Copy Identifier ({{identifier}})",
-    "fold_all_comments": "Fold All Comments",
-    "unfold_all_comments": "Unfold All Comments",
-    "switch_to_light": "Switch to Light Theme",
-    "switch_to_dark": "Switch to Dark Theme",
-    "use_system_theme": "Use System Theme"
+    "current_theme_aria": "Tema attuale",
+    "new_issue": "Nuova issue",
+    "new_project": "Nuovo progetto",
+    "copy_issue_link": "Copia il link della issue",
+    "copy_identifier": "Copia l'identificatore ({{identifier}})",
+    "fold_all_comments": "Chiudi tutti i commenti",
+    "unfold_all_comments": "Apri tutti i commenti",
+    "switch_to_light": "Passa al tema chiaro",
+    "switch_to_dark": "Passa al tema scuro",
+    "use_system_theme": "Usa il tema di sistema"
   },
   "toast": {
-    "link_copied": "Link copied",
-    "copied_identifier": "Copied {{identifier}}"
+    "link_copied": "Link copiato",
+    "copied_identifier": "Copiato {{identifier}}"
   },
   "empty": {
-    "no_results": "No results found.",
-    "type_to_search": "Type to search issues and projects"
+    "no_results": "Nessun risultato.",
+    "type_to_search": "Scrivi per cercare fra issue e progetti"
   },
   "trigger": {
-    "label": "Search..."
+    "label": "Cerca..."
   }
 }

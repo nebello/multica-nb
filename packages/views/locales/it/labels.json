@@ -1,10 +1,10 @@
 {
-  "remove_label": "Remove label {{name}}",
+  "remove_label": "Rimuovi l'etichetta {{name}}",
   "resource_picker": {
-    "empty": "No labels",
-    "add": "Add labels",
-    "search": "Search labels...",
-    "no_labels": "Create labels in Settings first",
-    "no_results": "No matching labels"
+    "empty": "Nessuna etichetta",
+    "add": "Aggiungi etichette",
+    "search": "Cerca etichette...",
+    "no_labels": "Crea prima le etichette nelle Impostazioni",
+    "no_results": "Nessuna etichetta corrispondente"
   }
 }

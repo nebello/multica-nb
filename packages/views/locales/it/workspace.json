@@ -1,34 +1,34 @@
 {
   "create_form": {
-    "name_label": "Workspace Name",
-    "name_placeholder": "My Workspace",
-    "url_label": "Workspace URL",
-    "url_placeholder": "my-workspace",
-    "submit": "Create workspace",
-    "submitting": "Creating...",
+    "name_label": "Nome del workspace",
+    "name_placeholder": "Il mio workspace",
+    "url_label": "URL del workspace",
+    "url_placeholder": "il-mio-workspace",
+    "submit": "Crea workspace",
+    "submitting": "Creazione...",
     "errors": {
-      "slug_format": "Only lowercase letters, numbers, and hyphens",
-      "slug_taken": "That workspace URL is already taken.",
-      "slug_reserved": "That workspace URL is reserved and cannot be used.",
-      "slug_conflict_toast": "Choose a different workspace URL",
-      "create_failed": "Failed to create workspace"
+      "slug_format": "Solo lettere minuscole, numeri e trattini",
+      "slug_taken": "Questo URL di workspace è già in uso.",
+      "slug_reserved": "Questo URL di workspace è riservato e non si può usare.",
+      "slug_conflict_toast": "Scegli un altro URL di workspace",
+      "create_failed": "Creazione del workspace non riuscita"
     }
   },
   "new_page": {
-    "back": "Back",
-    "log_out": "Log out",
-    "title": "Welcome to Multica",
-    "description": "One workspace where you and your AI teammates work side by side — taking issues, leaving comments, sharing the same context.",
-    "invite_hint": "You can invite teammates once your workspace is ready."
+    "back": "Indietro",
+    "log_out": "Esci",
+    "title": "Benvenuto in Multica",
+    "description": "Un workspace dove tu e i tuoi compagni di squadra AI lavorate affiancati: prendete issue, lasciate commenti, condividete lo stesso contesto.",
+    "invite_hint": "Potrai invitare i tuoi collaboratori quando il workspace è pronto."
   },
   "creation_disabled": {
-    "title": "Workspace creation is disabled",
-    "description": "This Multica instance does not allow new workspaces to be created. Ask your administrator for an invitation to an existing workspace."
+    "title": "La creazione di workspace è disattivata",
+    "description": "Questa istanza di Multica non permette di creare nuovi workspace. Chiedi al tuo amministratore un invito a un workspace esistente."
   },
   "no_access": {
-    "title": "Workspace not available",
-    "description": "This workspace doesn't exist or you don't have access.",
-    "go_to_workspaces": "Go to my workspaces",
-    "sign_in_different": "Sign in as a different user"
+    "title": "Workspace non disponibile",
+    "description": "Questo workspace non esiste oppure non hai accesso.",
+    "go_to_workspaces": "Vai ai miei workspace",
+    "sign_in_different": "Accedi con un altro utente"
   }
 }

@@ -1,8 +1,8 @@
 {
-  "attach_file": "Attach file",
-  "toggle_sidebar": "Toggle Sidebar",
-  "pagination_previous": "Go to previous page",
-  "pagination_next": "Go to next page",
-  "copy_code": "Copy code",
-  "plain_text": "plain text"
+  "attach_file": "Allega file",
+  "toggle_sidebar": "Mostra o nascondi la barra laterale",
+  "pagination_previous": "Vai alla pagina precedente",
+  "pagination_next": "Vai alla pagina successiva",
+  "copy_code": "Copia il codice",
+  "plain_text": "testo semplice"
 }

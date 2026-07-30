@@ -1,21 +1,21 @@
 {
   "role": {
-    "owner": "Owner",
-    "admin": "Admin",
-    "member": "Member"
+    "owner": "Proprietario",
+    "admin": "Amministratore",
+    "member": "Membro"
   },
   "card": {
-    "unavailable": "Member unavailable",
-    "agents_section": "Agents ({{count}})",
-    "detail_link": "Detail →",
-    "more_agents_one": "and {{count}} other agent",
-    "more_agents_other": "and {{count}} other agents"
+    "unavailable": "Membro non disponibile",
+    "agents_section": "Agenti ({{count}})",
+    "detail_link": "Dettaglio →",
+    "more_agents_one": "e {{count}} altro agente",
+    "more_agents_other": "e altri {{count}} agenti"
   },
   "detail": {
     "workspace_fallback": "Workspace",
-    "members_breadcrumb": "Members",
-    "breadcrumb_fallback": "Member",
-    "not_found_title": "Member not found",
-    "not_found_description": "This member may have left the workspace."
+    "members_breadcrumb": "Membri",
+    "breadcrumb_fallback": "Membro",
+    "not_found_title": "Membro non trovato",
+    "not_found_description": "Questo membro potrebbe aver lasciato il workspace."
   }
 }
