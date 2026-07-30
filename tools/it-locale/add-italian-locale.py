@@ -128,6 +128,52 @@ def patch_switcher(s: str) -> str:
 
 edit(pathlib.Path("packages/views/settings/components/preferences-tab.tsx"), patch_switcher)
 
+
+# 7. mappe per-locale tipizzate `Record<SupportedLocale, ...>`: il compilatore
+#    le pretende complete, quindi ognuna va estesa. Sono quattro, e le trova
+#    `tsc` non il parity test — per questo conviene costruire l'immagine presto.
+def add_html_lang(s: str) -> str:
+    if 'it: "it-IT"' in s:
+        return s
+    return s.replace('  ja: "ja-JP",\n};', '  ja: "ja-JP",\n  it: "it-IT",\n};')
+
+
+for f in ("apps/web/app/layout.tsx", "apps/desktop/src/renderer/src/App.tsx"):
+    edit(pathlib.Path(f), add_html_lang)
+
+
+# L'onboarding ha contenuti scritti a mano solo in quattro lingue: l'italiano
+# ricade sull'inglese invece di mostrare una schermata vuota.
+def add_content_lang(s: str) -> str:
+    if 'it: "en"' in s:
+        return s
+    return s.replace('  ja: "ja",\n};', '  ja: "ja",\n  it: "en",\n};')
+
+
+edit(pathlib.Path("packages/views/onboarding/templates/index.ts"), add_content_lang)
+
+
+def add_use_case_text(s: str) -> str:
+    if "  it: {" in s:
+        return s
+    it_block = """  it: {
+    indexTitle: "Casi d'uso",
+    indexSubtitle:
+      "Guarda come i team organizzano persone e agenti insieme con Multica.",
+    indexMetadataTitle: "Casi d'uso",
+    indexMetadataDescription:
+      "Guarda come i team mettono persone e agenti a lavorare insieme con Multica.",
+    cardReadMore: "Leggi \u2192",
+    tableOfContents: "In questa pagina",
+  },
+"""
+    marker = "export const useCaseText: Record<SupportedLocale, UseCaseText> = {\n"
+    i = s.index(marker) + len(marker)
+    return s[:i] + it_block + s[i:]
+
+
+edit(pathlib.Path("apps/web/lib/use-cases-i18n.ts"), add_use_case_text)
+
 print("modificati:")
 for c in changed:
     print("  ", c)
