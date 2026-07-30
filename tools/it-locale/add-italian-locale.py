@@ -174,6 +174,23 @@ def add_use_case_text(s: str) -> str:
 
 edit(pathlib.Path("apps/web/lib/use-cases-i18n.ts"), add_use_case_text)
 
+
+# 8. la i18n della landing ha il proprio `Locale = SupportedLocale`, quindi il
+#    Record delle etichette va completato. NON aggiungo "it" all'array
+#    `locales`: il dizionario della landing esiste solo in 4 lingue e
+#    `toLandingDictionaryLocale` ricade su "en", quindi offrire l'italiano nel
+#    selettore della landing mostrerebbe copy inglese. Meglio non offrirlo.
+def add_landing_label(s: str) -> str:
+    if 'it: "IT"' in s:
+        return s
+    return s.replace(
+        '  ja: "\\u65e5\\u672c\\u8a9e",\n};',
+        '  ja: "\\u65e5\\u672c\\u8a9e",\n  it: "IT",\n};',
+    )
+
+
+edit(pathlib.Path("apps/web/features/landing/i18n/types.ts"), add_landing_label)
+
 print("modificati:")
 for c in changed:
     print("  ", c)
