@@ -164,3 +164,61 @@ func TestCapabilitiesDeclareOnlyWhatIsHonoured(t *testing.T) {
 		t.Error("CapAttachment dichiarata ma non implementata")
 	}
 }
+
+// sessionRouting decides what counts as "one conversation". Getting it wrong
+// either shreds a group chat into a session per message or merges two forum
+// topics into one — both are silent, both are bad.
+func TestSessionRoutingIsolation(t *testing.T) {
+	msg := func(chatID, threadID string, ct channel.ChatType) channel.InboundMessage {
+		return channel.InboundMessage{Source: channel.Source{ChatID: chatID, ThreadID: threadID, ChatType: ct}}
+	}
+
+	t.Run("una chat diretta è una sessione continua", func(t *testing.T) {
+		k1, cfg, thread := sessionRouting(msg("555", "", channel.ChatTypeP2P))
+		k2, _, _ := sessionRouting(msg("555", "", channel.ChatTypeP2P))
+		if k1 != "555" || k1 != k2 {
+			t.Fatalf("chiavi %q e %q", k1, k2)
+		}
+		if thread != "" {
+			t.Errorf("nessun thread atteso, got %q", thread)
+		}
+		var bc bindingConfig
+		if err := json.Unmarshal(cfg, &bc); err != nil || bc.ChatID != "555" {
+			t.Errorf("config di binding = %s (err %v)", cfg, err)
+		}
+	})
+
+	t.Run("un gruppo senza topic resta una sola sessione", func(t *testing.T) {
+		a, _, _ := sessionRouting(msg("-100", "", channel.ChatTypeGroup))
+		b, _, _ := sessionRouting(msg("-100", "", channel.ChatTypeGroup))
+		if a != b || a != "-100" {
+			t.Fatalf("due messaggi nello stesso gruppo hanno dato %q e %q", a, b)
+		}
+	})
+
+	t.Run("due topic dello stesso gruppo sono due sessioni", func(t *testing.T) {
+		a, _, ta := sessionRouting(msg("-100", "7", channel.ChatTypeGroup))
+		b, _, _ := sessionRouting(msg("-100", "9", channel.ChatTypeGroup))
+		if a == b {
+			t.Fatal("topic diversi hanno prodotto la stessa chiave di sessione")
+		}
+		if ta != "7" {
+			t.Errorf("thread di risposta = %q, atteso 7", ta)
+		}
+	})
+}
+
+func TestBotIDFromToken(t *testing.T) {
+	if got := BotIDFromToken("123456789:AAHscrittosegretissimo"); got != "123456789" {
+		t.Errorf("token valido → %q", got)
+	}
+	for _, bad := range []string{"", "senzaduepunti", ":soloseg", "abc:def", "12ab34:xyz"} {
+		if got := BotIDFromToken(bad); got != "" {
+			t.Errorf("BotIDFromToken(%q) = %q, atteso vuoto", bad, got)
+		}
+	}
+	// La metà segreta non deve mai uscire dalla funzione.
+	if strings.Contains(BotIDFromToken("42:supersegreto"), "supersegreto") {
+		t.Fatal("il segreto è finito nel valore di ritorno")
+	}
+}

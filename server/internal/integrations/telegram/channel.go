@@ -17,7 +17,11 @@
 //     webhook URL and no signature verification.
 package telegram
 
-import "github.com/multica-ai/multica/server/internal/integrations/channel"
+import (
+	"strings"
+
+	"github.com/multica-ai/multica/server/internal/integrations/channel"
+)
 
 // TypeTelegram is this adapter's platform discriminator, registered in the
 // channel Registry. It lives here and not in the channel package for the
@@ -39,4 +43,25 @@ type installConfig struct {
 	// BotUsername lets group-mention detection work before the first getMe
 	// round-trip; it is refreshed from getMe at Connect time.
 	BotUsername string `json:"bot_username,omitempty"`
+}
+
+// BotIDFromToken extracts the numeric bot id from a Bot API token, whose
+// documented shape is "<bot_id>:<secret>". It is the routing key stored in
+// config->>'app_id', and deriving it from the token means the installation row
+// never has to be trusted to agree with the credential actually in use.
+//
+// The secret half is never returned, so a caller cannot leak it by logging the
+// result.
+func BotIDFromToken(token string) string {
+	i := strings.Index(token, ":")
+	if i <= 0 {
+		return ""
+	}
+	id := token[:i]
+	for _, r := range id {
+		if r < '0' || r > '9' {
+			return ""
+		}
+	}
+	return id
 }
