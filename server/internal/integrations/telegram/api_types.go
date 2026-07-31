@@ -56,8 +56,11 @@ type apiEntity struct {
 }
 
 type apiFile struct {
-	FileID   string `json:"file_id"`
-	FileName string `json:"file_name,omitempty"`
-	MimeType string `json:"mime_type,omitempty"`
-	FileSize int64  `json:"file_size,omitempty"`
+	FileID string `json:"file_id"`
+	// FileUniqueID e' stabile per contenuto (file_id cambia fra bot), quindi
+	// e' quello che entra nella chiave di storage.
+	FileUniqueID string `json:"file_unique_id,omitempty"`
+	FileName     string `json:"file_name,omitempty"`
+	MimeType     string `json:"mime_type,omitempty"`
+	FileSize     int64  `json:"file_size,omitempty"`
 }

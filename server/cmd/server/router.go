@@ -30,6 +30,7 @@ import (
 	"github.com/multica-ai/multica/server/internal/integrations/dingtalk"
 	"github.com/multica-ai/multica/server/internal/integrations/lark"
 	"github.com/multica-ai/multica/server/internal/integrations/slack"
+	"github.com/multica-ai/multica/server/internal/integrations/telegram"
 	"github.com/multica-ai/multica/server/internal/integrations/wecom"
 	obsmetrics "github.com/multica-ai/multica/server/internal/metrics"
 	"github.com/multica-ai/multica/server/internal/middleware"
@@ -788,6 +789,44 @@ func NewRouterWithOptions(pool *pgxpool.Pool, hub *realtime.Hub, bus *events.Bus
 		}
 	} else {
 		slog.Info("wecom integration disabled (MULTICA_WECOM_SECRET_KEY not set)")
+	}
+
+	// Telegram integration. Gated on MULTICA_TELEGRAM_BOT_TOKEN alone: unlike
+	// Slack and Lark this adapter keeps no per-installation credential (one bot
+	// per self-hosted deployment), so there is no secretbox key to require and
+	// the token IS the switch. The bot id is derived from the token rather than
+	// read from the installation row, so the routing key can never disagree
+	// with the credential actually in use.
+	//
+	// The Supervisor drives one long-poll loop per active Telegram installation
+	// through the registered Factory, exactly as it does for Feishu and Slack.
+	// The replier is nil for now: the inbound pipeline is complete without it,
+	// and what is missing is only the outbound "link your account" prompt — an
+	// unbound sender is recorded as a drop instead of being answered.
+	if tgToken := strings.TrimSpace(os.Getenv("MULTICA_TELEGRAM_BOT_TOKEN")); tgToken != "" {
+		botID := telegram.BotIDFromToken(tgToken)
+		if botID == "" {
+			slog.Error("telegram: MULTICA_TELEGRAM_BOT_TOKEN is malformed, expected \"<bot_id>:<secret>\"; telegram integration disabled")
+		} else {
+			// Media ingest: un vocale Telegram diventa un file nello storage e
+			// quindi un allegato che l'agente trova nella sua cartella di
+			// lavoro. `store` e' nil quando nessun backend di storage e'
+			// configurato: in quel caso l'ingest si spegne e le chat restano
+			// solo testo, che e' il degrado giusto.
+			var tgMedia engine.MediaResolver
+			if store != nil {
+				tgMedia = telegram.NewMediaResolver(tgToken, store,
+					engine.NewDBMediaIntentLedger(queries), slog.Default())
+			}
+			channelRouter.Register(telegram.TypeTelegram,
+				telegram.NewTelegramResolverSet(queries, pool, botID, nil, tgMedia))
+			telegram.NewOutbound(queries, tgToken, slog.Default()).Register(bus)
+			telegram.RegisterTelegram(channelRegistry,
+				telegram.ChannelDeps{BotToken: tgToken, Logger: slog.Default()})
+			slog.Info("telegram integration enabled (long polling)", "bot_id", botID)
+		}
+	} else {
+		slog.Info("telegram integration disabled (MULTICA_TELEGRAM_BOT_TOKEN not set)")
 	}
 
 	// Composio integration (MUL-3720). Gated by COMPOSIO_API_KEY plus the

@@ -41,7 +41,7 @@ const originTelegramChat = "telegram_chat"
 // replier may be nil: the inbound pipeline (route, identity, dedup, session,
 // run trigger) is fully functional without it; what is lost is the outbound
 // "you need to link your account" prompt.
-func NewTelegramResolverSet(q *db.Queries, tx engine.TxStarter, botID string, replier engine.OutboundReplier) engine.ResolverSet {
+func NewTelegramResolverSet(q *db.Queries, tx engine.TxStarter, botID string, replier engine.OutboundReplier, media engine.MediaResolver) engine.ResolverSet {
 	return engine.ResolverSet{
 		Installation: &installationResolver{q: q, botID: botID},
 		Identity:     &identityResolver{q: q},
@@ -51,7 +51,10 @@ func NewTelegramResolverSet(q *db.Queries, tx engine.TxStarter, botID string, re
 			Direct:   "Messaggio diretto Telegram",
 			Fallback: "Chat Telegram",
 		})},
-		Audit:      &auditor{q: q},
+		Audit: &auditor{q: q},
+		// Media puo' essere nil: senza storage configurato l'ingest si spegne e
+		// i messaggi restano sul percorso testo, invece di essere scartati.
+		Media:      media,
 		Replier:    replier,
 		OriginType: originTelegramChat,
 	}

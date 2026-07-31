@@ -66,12 +66,13 @@ var _ channel.Channel = (*telegramChannel)(nil)
 
 func (c *telegramChannel) Type() channel.Type { return TypeTelegram }
 
-// Capabilities declares text and quote-reply. Telegram does support
-// attachments and forum topics, but this adapter does not resolve media yet,
-// and declaring a capability it cannot honour would make callers degrade the
-// wrong way.
+// Capabilities declares what this adapter honours today: text, quote-reply,
+// and inbound attachments including voice notes (see media_ingest.go). Threads
+// are deliberately absent — only forum topics thread on Telegram, and a plain
+// group has no threading at all, so declaring CapThreadReply would make callers
+// thread replies that cannot be threaded.
 func (c *telegramChannel) Capabilities() channel.Capability {
-	return channel.CapText | channel.CapQuoteReply
+	return channel.CapText | channel.CapQuoteReply | channel.CapAttachment | channel.CapVoice
 }
 
 // Disconnect is a no-op: the poll loop's whole lifetime is scoped to Connect,
@@ -172,7 +173,7 @@ func (c *telegramChannel) Send(ctx context.Context, out channel.OutboundMessage)
 		if i == 0 && out.ReplyTo != "" {
 			if id, err := strconv.ParseInt(messageIDPart(out.ReplyTo), 10, 64); err == nil {
 				payload["reply_parameters"] = map[string]any{
-					"message_id":                 id,
+					"message_id":                  id,
 					"allow_sending_without_reply": true,
 				}
 			}

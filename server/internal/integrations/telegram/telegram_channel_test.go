@@ -158,10 +158,13 @@ func TestCapabilitiesDeclareOnlyWhatIsHonoured(t *testing.T) {
 	if !caps.Has(channel.CapText) || !caps.Has(channel.CapQuoteReply) {
 		t.Fatalf("capabilities = %s", caps)
 	}
-	// L'adapter non risolve ancora i media: dichiararlo farebbe degradare
-	// male i chiamanti.
-	if caps.Has(channel.CapAttachment) {
-		t.Error("CapAttachment dichiarata ma non implementata")
+	// I media ora si risolvono (media_ingest.go), quindi vanno dichiarati.
+	if !caps.Has(channel.CapAttachment) || !caps.Has(channel.CapVoice) {
+		t.Error("allegati e vocali sono implementati ma non dichiarati")
+	}
+	// I thread restano fuori: solo i topic dei forum sono thread veri.
+	if caps.Has(channel.CapThreadReply) {
+		t.Error("CapThreadReply dichiarata ma un gruppo Telegram non ha thread")
 	}
 }
 
