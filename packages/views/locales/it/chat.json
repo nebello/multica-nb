@@ -62,9 +62,9 @@
     "copied_toast": "Copiato",
     "copy_failed_toast": "Copia non riuscita",
     "loading_older": "Caricamento dei messaggi precedenti…",
-    "quick_actions_heading": "Follow-up questions",
-    "quick_actions_regenerate": "Regenerate suggestions",
-    "quick_actions_regenerate_failed": "Couldn't refresh suggestions. Please try again."
+    "quick_actions_heading": "Domande di seguito",
+    "quick_actions_regenerate": "Rigenera i suggerimenti",
+    "quick_actions_regenerate_failed": "Non è stato possibile aggiornare i suggerimenti. Riprova."
   },
   "session_history": {
     "untitled": "Senza titolo",

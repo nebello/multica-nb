@@ -81,6 +81,10 @@ T["layout"] = {
 }
 
 T["common"] = {
+    "avatar_upload.upload_image": "Carica un'immagine",
+    "avatar_upload.emoji_label": "Emoji",
+    "avatar_upload.more_emojis": "Altre emoji…",
+    "avatar_upload.emoji_loading": "Caricamento…",
     "avatar_upload.change": "Cambia avatar",
     "avatar_upload.remove": "Rimuovi",
     "avatar_upload.select_image": "Scegli un file immagine.",
@@ -203,6 +207,11 @@ T["workspace"] = {
 
 
 T["inbox"] = {
+    "context_menu.mark_read": "Segna come letto",
+    "context_menu.mark_unread": "Segna come non letto",
+    "context_menu.archive": "Archivia",
+    "context_menu.unarchive": "Togli dall'archivio",
+    "errors.mark_unread_failed": "Impossibile segnare come non letto",
     "page.title": "Inbox",
     "page.back": "Inbox",
     "menu.mark_all_read": "Segna tutto come letto",
@@ -415,6 +424,28 @@ T["my-issues"] = {
 
 
 T["issues"] = {
+    "detail.section_quick_actions": "Azioni rapide",
+    "detail.quick_actions_more": "Mostra altre {{count}}",
+    "detail.quick_action_runs_as": "Gira come {{name}}",
+    "detail.quick_action_target_fallback": "l'agente",
+    "detail.quick_action_queued": "{{name}} si è messo al lavoro",
+    "detail.quick_action_coalesced": "Aggiunta al lavoro già in corso di {{name}}",
+    "detail.quick_action_deferred": "{{name}} è offline — partirà appena torna online",
+    "detail.quick_action_blocked": "Non è stato possibile far partire {{name}}",
+    "detail.quick_action_posted": "Commento pubblicato",
+    "detail.quick_action_blocked_title": "Non puoi eseguire questa azione rapida",
+    "detail.quick_action_blocked_body": "«{{name}}» gira come un agente che non sei autorizzato a far partire. Chiedi a un amministratore del workspace di renderlo disponibile al team, oppure di puntare questa azione su un agente condiviso.",
+    "detail.quick_action_blocked_ok": "Ho capito",
+    "detail.delegated_subscription_badge": "Segui tramite agente",
+    "detail.delegated_subscription_hint": "Questa issue l'ha creata un tuo agente per tuo conto, quindi la stai seguendo. Riceverai una notifica quando serve una revisione, quando finisce o quando si blocca.",
+    "detail.unsubscribe_this": "Smetti di seguire questa issue",
+    "detail.unsubscribe_subtree": "Smetti di seguire questa issue e le sue sotto-issue",
+    "detail.unsubscribe_subtree_failed": "Non è stato possibile smettere di seguire le sotto-issue. Riprova.",
+    "detail.unsubscribe_subtree_unsupported": "Il server di questo workspace non permette ancora di smettere di seguire le sotto-issue. Riprova dopo il prossimo aggiornamento.",
+    "agent_activity.unknown_hover": "Agenti al lavoro: non ancora caricato",
+    "filtered_empty.title": "Nessuna issue corrisponde a questi filtri",
+    "filtered_empty.hint": "Modifica o azzera i filtri per vedere le issue di questa vista.",
+    "filtered_empty.clear_button": "Azzera i filtri",
     "page.breadcrumb_title": "Issue",
     "page.breadcrumb_workspace_fallback": "Workspace",
     "page.empty_title": "Nessuna issue",
@@ -956,6 +987,9 @@ T["issues"].update({
 
 
 T["chat"] = {
+    "message_list.quick_actions_heading": "Domande di seguito",
+    "message_list.quick_actions_regenerate": "Rigenera i suggerimenti",
+    "message_list.quick_actions_regenerate_failed": "Non è stato possibile aggiornare i suggerimenti. Riprova.",
     "page.title": "Chat",
     "page.select_prompt": "Scegli una conversazione, o aprine una nuova con +",
     "page.agent_link_no_access": "Non hai accesso alla chat con questo agente.",
@@ -1660,6 +1694,10 @@ T["editor"] = {
     "mermaid.export_png": "Scarica il PNG",
     "mermaid.export_svg": "Scarica l'SVG",
     "mermaid.export_source": "Scarica il .mmd",
+}
+
+T["onboarding"] = {
+    "common.log_out": "Esci",
 }
 
 PLACEHOLDER = re.compile(r"\{\{[^}]+\}\}")

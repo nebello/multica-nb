@@ -5,10 +5,10 @@
     "select_image": "Scegli un file immagine.",
     "updated": "Avatar aggiornato",
     "failed": "Caricamento dell'avatar non riuscito",
-    "upload_image": "Upload image",
+    "upload_image": "Carica un'immagine",
     "emoji_label": "Emoji",
-    "more_emojis": "More emojis…",
-    "emoji_loading": "Loading…"
+    "more_emojis": "Altre emoji…",
+    "emoji_loading": "Caricamento…"
   },
   "avatar_crop": {
     "title": "Modifica avatar",
