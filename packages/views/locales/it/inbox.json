@@ -9,6 +9,12 @@
     "archive_all_read": "Archivia tutti i letti",
     "archive_completed": "Archivia i completati"
   },
+  "context_menu": {
+    "mark_read": "Mark as read",
+    "mark_unread": "Mark as unread",
+    "archive": "Archive",
+    "unarchive": "Unarchive"
+  },
   "list": {
     "empty": "Nessuna notifica",
     "mark_done_tooltip": "Segna come fatto",
@@ -67,6 +73,7 @@
   },
   "errors": {
     "mark_read_failed": "Impossibile segnare come letto",
+    "mark_unread_failed": "Failed to mark as unread",
     "archive_failed": "Archiviazione non riuscita",
     "mark_done_failed": "Impossibile segnare come fatto",
     "mark_all_read_failed": "Impossibile segnare tutto come letto",

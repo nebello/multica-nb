@@ -1687,7 +1687,13 @@ def count(o):
 
 
 total_done = total_all = 0
-for ns, table in sorted(T.items()):
+# Si cammina su TUTTI i namespace di en/, non solo su quelli con traduzione:
+# altrimenti i namespace ancora inglesi restano fermi alla copia vecchia e,
+# quando upstream aggiunge chiavi, `it` va fuori parita'. E' esattamente il
+# difetto emerso al primo aggiornamento (v0.4.16, +166 chiavi).
+tutti = sorted(p.stem for p in (LOC / "en").glob("*.json"))
+for ns in tutti:
+    table = T.get(ns, {})
     if ONLY and ns not in ONLY:
         continue
     en_path, it_path = LOC / "en" / f"{ns}.json", LOC / "it" / f"{ns}.json"
