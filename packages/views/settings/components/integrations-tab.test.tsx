@@ -57,6 +57,10 @@ vi.mock("./wecom-tab", () => ({
   WecomTab: () => <div data-testid="wecom-tab" />,
 }));
 
+vi.mock("./telegram-tab", () => ({
+  TelegramTab: () => <div data-testid="telegram-tab" />,
+}));
+
 import { IntegrationsTab } from "./integrations-tab";
 
 afterEach(cleanup);
@@ -146,5 +150,15 @@ describe("Settings IntegrationsTab", () => {
     renderTab();
 
     expect(screen.getByTestId("vcs-tab")).toBeInTheDocument();
+  });
+
+  // Telegram is gated by a server env var rather than an /api/config flag, so
+  // this host renders it unconditionally and the panel itself explains an
+  // unconfigured deployment. The assertion guards that split: a future change
+  // that moves the gate up here would have to say so.
+  it("always renders the Telegram section, leaving the configured check to the panel", () => {
+    renderTab();
+
+    expect(screen.getByTestId("telegram-tab")).toBeInTheDocument();
   });
 });

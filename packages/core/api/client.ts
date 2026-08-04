@@ -173,6 +173,8 @@ import type {
   ListWecomInstallationsResponse,
   RegisterWecomBYORequest,
   RedeemWecomBindingTokenResponse,
+  TelegramInstallation,
+  GetTelegramInstallationResponse,
   Squad,
   SquadMember,
   SquadMemberStatusListResponse,
@@ -3842,5 +3844,28 @@ export class ApiClient {
       EMPTY_REDEEM_WECOM_BINDING_TOKEN_RESPONSE,
       { endpoint: "POST /api/wecom/binding/redeem" },
     );
+  }
+
+  // Telegram integration. One bot per deployment (the token is an env var), so
+  // the whole surface is a single installation: read it, point it at an agent,
+  // or disconnect it.
+  async getTelegramInstallation(workspaceId: string): Promise<GetTelegramInstallationResponse> {
+    return this.fetch(`/api/workspaces/${workspaceId}/telegram/installation`);
+  }
+
+  // bindTelegramAgent installs on first call and MOVES the bot on later ones —
+  // the server upserts on the bot id, so there is never a second binding to
+  // clean up.
+  async bindTelegramAgent(workspaceId: string, agentId: string): Promise<TelegramInstallation> {
+    return this.fetch(`/api/workspaces/${workspaceId}/telegram/installation`, {
+      method: "PUT",
+      body: JSON.stringify({ agent_id: agentId }),
+    });
+  }
+
+  async disconnectTelegram(workspaceId: string): Promise<void> {
+    await this.fetch(`/api/workspaces/${workspaceId}/telegram/installation`, {
+      method: "DELETE",
+    });
   }
 }

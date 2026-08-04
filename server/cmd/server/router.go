@@ -823,6 +823,11 @@ func NewRouterWithOptions(pool *pgxpool.Pool, hub *realtime.Hub, bus *events.Bus
 			telegram.NewOutbound(queries, tgToken, slog.Default()).Register(bus)
 			telegram.RegisterTelegram(channelRegistry,
 				telegram.ChannelDeps{BotToken: tgToken, Logger: slog.Default()})
+			// Switch for the management API (Settings → Integrations → Telegram).
+			// Set only inside this branch: a malformed token leaves it empty, so
+			// the panel reports "not configured" instead of offering a bind that
+			// could never poll.
+			h.TelegramBotID = botID
 			slog.Info("telegram integration enabled (long polling)", "bot_id", botID)
 		}
 	} else {
@@ -1301,6 +1306,21 @@ func NewRouterWithOptions(pool *pgxpool.Pool, hub *realtime.Hub, bus *events.Bus
 					r.Delete("/dingtalk/installations/{installationId}", h.RevokeDingTalkInstallation)
 					r.Post("/dingtalk/install/byo", h.RegisterDingTalkBYO)
 					r.Patch("/dingtalk/group-routes/{routeId}", h.UpdateDingTalkGroupRoute)
+				})
+
+				// Telegram integration. Same member/admin split as Lark and
+				// Slack: reading which agent answers the bot is member-visible,
+				// changing it is admin-only. There is no OAuth callback and no
+				// per-installation token — the bot is a deployment-level env
+				// var, so the whole surface is these three routes.
+				r.Group(func(r chi.Router) {
+					r.Use(middleware.RequireWorkspaceMemberFromURL(queries, "id"))
+					r.Get("/telegram/installation", h.GetTelegramInstallation)
+				})
+				r.Group(func(r chi.Router) {
+					r.Use(middleware.RequireWorkspaceRoleFromURL(queries, "id", "owner", "admin"))
+					r.Put("/telegram/installation", h.BindTelegramAgent)
+					r.Delete("/telegram/installation", h.DisconnectTelegram)
 				})
 			})
 		})

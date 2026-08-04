@@ -218,6 +218,11 @@ export type {
   RedeemWecomBindingTokenResponse,
 } from "./wecom";
 export type {
+  TelegramInstallation,
+  GetTelegramInstallationResponse,
+  BindTelegramAgentRequest,
+} from "./telegram";
+export type {
   Autopilot,
   AutopilotStatus,
   AutopilotExecutionMode,

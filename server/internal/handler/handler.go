@@ -249,6 +249,15 @@ type Handler struct {
 	// where the storage backend exists; main.go starts it as an independent
 	// worker goroutine. Nil when no storage backend is configured.
 	ChannelMediaReconciler *service.ChannelMediaReconciler
+	// TelegramBotID is the numeric bot id derived from MULTICA_TELEGRAM_BOT_TOKEN,
+	// and doubles as the integration's on/off switch for the management API: empty
+	// means no token is configured. Unlike Slack there is no install service to
+	// hold — this adapter stores no per-installation credential, so the binding is
+	// a plain channel_installation row the handler upserts directly.
+	//
+	// It is the bot id from the token in USE, never from a row: the routing key in
+	// config->>'app_id' can therefore never disagree with the live credential.
+	TelegramBotID string
 	// SlackInstall owns the bring-your-own-app Slack install lifecycle (register
 	// pasted tokens / list / revoke) and the at-rest encryption of each app's bot
 	// + app tokens (MUL-3666). Nil unless MULTICA_SLACK_SECRET_KEY is set.

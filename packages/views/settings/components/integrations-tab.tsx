@@ -5,6 +5,7 @@ import { LarkTab } from "./lark-tab";
 import { ComposioTab } from "./composio-tab";
 import { SlackTab } from "./slack-tab";
 import { DingTalkTab } from "./dingtalk-tab";
+import { TelegramTab } from "./telegram-tab";
 import { VCSTab } from "./vcs-tab";
 import { WecomTab } from "./wecom-tab";
 import { ApiError } from "@multica/core/api";
@@ -77,6 +78,14 @@ export function IntegrationsTab() {
         description={t(($) => $.dingtalk.page_description)}
       >
         <DingTalkTab />
+      </SettingsSection>
+      {/* Telegram is gated by a server env var, not by a /api/config flag, so
+          this host renders the section unconditionally and TelegramTab itself
+          explains the unconfigured case. Deliberate: keeping IntegrationsTab
+          free of workspace-scoped hooks is what lets it be rendered (and
+          tested) with the child panels mocked out. */}
+      <SettingsSection title={t(($) => $.telegram.section_title)}>
+        <TelegramTab />
       </SettingsSection>
       {vcsAvailable && (
         <SettingsSection title={t(($) => $.vcs.section_title)}>
