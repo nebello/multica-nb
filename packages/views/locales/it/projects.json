@@ -70,7 +70,8 @@
     "section_description": "Descrizione",
     "prop_start_date": "Data di inizio",
     "prop_due_date": "Scadenza",
-    "clear_date": "Azzera la data",
+    "no_start_date": "Nessuna data di inizio",
+    "no_due_date": "Nessuna scadenza",
     "description_placeholder": "Aggiungi una descrizione...",
     "description_hint": "Condivisa con gli agenti come contesto per ogni task di questo progetto.",
     "empty_issues_title": "Nessuna issue collegata",
@@ -126,7 +127,6 @@
   },
   "picker": {
     "no_project": "Nessun progetto",
-    "remove": "Togli dal progetto",
     "empty": "Nessun progetto",
     "search_placeholder": "Cerca progetti..."
   },

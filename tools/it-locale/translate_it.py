@@ -732,6 +732,13 @@ T["issues"] = {
     "backlog_hint.row_backlog_hint": "tiene l'agente in pausa",
     "backlog_hint.row_todo_label": "Da fare",
     "backlog_hint.row_todo_hint": "fa partire l'agente",
+    "comment.trigger_blocked_agent_runtime_required": "Questo destinatario non ha un runtime — collegane uno per farlo girare",
+    "comment.trigger_blocked_short_agent_runtime_required": "Serve un runtime",
+    "pickers.custom_property.none": "Nessun valore",
+    "pickers.assignee.agent_runtime_required": "Collega un runtime prima di assegnare lavoro a questo agente",
+    "pickers.assignee.squad_runtime_required": "Collega un runtime al capo di questa squadra prima di assegnarle lavoro",
+    "pickers.start_date.none": "Nessuna data di inizio",
+    "pickers.due_date.none": "Nessuna scadenza",
 }
 
 
@@ -1133,6 +1140,13 @@ T["chat"] = {
     "header.archive": "Archivia la chat",
     "header.unarchive": "Togli la chat dall'archivio",
     "header.delete": "Elimina la chat",
+    "input.placeholder_runtime_required": "Collega un runtime per continuare",
+    "input.runtime_required_toast": "Messaggio non inviato — collega prima un runtime a questo agente",
+    "window.agent_needs_runtime": "Serve un runtime",
+    "window.agent_needs_runtime_hint": "Collega un runtime prima di aprire una chat con questo agente",
+    "runtime_required_banner.fallback_name": "L'agente",
+    "runtime_required_banner.message": "A {{name}} serve un runtime prima di poter rispondere.",
+    "runtime_required_banner.action": "Collega un runtime",
 }
 
 T["projects"] = {
@@ -1261,6 +1275,8 @@ T["projects"] = {
     "toolbar.direction_desc": "Decrescente",
     "toolbar.section_columns": "Colonne",
     "toolbar.view": "Vista",
+    "detail.no_start_date": "Nessuna data di inizio",
+    "detail.no_due_date": "Nessuna scadenza",
 }
 
 
@@ -1702,6 +1718,36 @@ T["onboarding"] = {
 
 PLACEHOLDER = re.compile(r"\{\{[^}]+\}\}")
 
+
+# Solo le chiavi che abbiamo aggiunto noi (il tab Telegram). Il resto di
+# `settings` non e' tradotto e resta in inglese: senza questa tabella la
+# rigenerazione sovrascriveva l'italiano scritto a mano nel JSON.
+T["settings"] = {
+    "telegram.section_title": "Telegram",
+    "telegram.page_description": "Un solo bot Telegram per questa istanza, a cui risponde l'agente che scegli. Si puo' scrivergli in privato o menzionarlo in un gruppo; vocali e foto arrivano come allegati.",
+    "telegram.loading": "Caricamento…",
+    "telegram.not_enabled_description_prefix": "Imposta",
+    "telegram.not_enabled_description_suffix": "sul server per attivare il bot Telegram.",
+    "telegram.bot_unknown_username": "Bot Telegram",
+    "telegram.bot_id_label": "Id del bot {{id}}",
+    "telegram.revoked_badge": "scollegato",
+    "telegram.bound_agent_label": "Agente che risponde",
+    "telegram.pick_agent_placeholder": "Scegli un agente…",
+    "telegram.save_bind": "Collega",
+    "telegram.save_rebind": "Sposta il bot",
+    "telegram.saving": "Salvataggio…",
+    "telegram.propagation_hint": "La modifica viene raccolta entro una trentina di secondi, senza riavviare.",
+    "telegram.owned_by_other_workspace": "Questo bot e' gia' collegato a un altro workspace su questo server. Scollegalo da li' prima di collegarlo qui.",
+    "telegram.disconnect": "Scollega",
+    "telegram.disconnecting": "Scollegamento…",
+    "telegram.disconnect_confirm_title": "Scollegare questo bot Telegram?",
+    "telegram.disconnect_confirm_description": "Il bot smette di ricevere messaggi. L'installazione resta, quindi riscegliere un agente lo ricollega.",
+    "telegram.disconnect_confirm_cancel": "Annulla",
+    "telegram.toast_bound": "Bot Telegram collegato",
+    "telegram.toast_bind_failed": "Non e' stato possibile collegare il bot Telegram",
+    "telegram.toast_disconnected": "Bot Telegram scollegato",
+    "telegram.toast_disconnect_failed": "Non e' stato possibile scollegare il bot Telegram",
+}
 
 def apply(en, table, prefix=""):
     """Ricostruisce il ramo italiano seguendo la forma di `en`."""

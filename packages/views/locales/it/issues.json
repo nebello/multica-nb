@@ -390,10 +390,12 @@
     "trigger_blocked_invocation_not_allowed": "Non hai i permessi per usare questo destinatario",
     "trigger_blocked_target_unavailable": "Questo destinatario non è disponibile",
     "trigger_blocked_runtime_offline": "Il runtime di questo destinatario è offline",
+    "trigger_blocked_agent_runtime_required": "Questo destinatario non ha un runtime — collegane uno per farlo girare",
     "trigger_blocked_generic": "Questo destinatario non partirà",
     "trigger_blocked_short_invocation_not_allowed": "Permessi mancanti",
     "trigger_blocked_short_target_unavailable": "Non disponibile",
     "trigger_blocked_short_runtime_offline": "Runtime offline",
+    "trigger_blocked_short_agent_runtime_required": "Serve un runtime",
     "trigger_blocked_short_generic": "Non partirà",
     "send_reply_failed": "Invio della risposta non riuscito",
     "delete_failed": "Eliminazione del commento non riuscita",
@@ -582,7 +584,7 @@
   "pickers": {
     "custom_property": {
       "empty": "Vuoto",
-      "clear_action": "Azzera",
+      "none": "Nessun valore",
       "true_label": "Sì",
       "false_label": "No",
       "value_placeholder": "Inserisci un valore…",
@@ -598,15 +600,17 @@
       "search_placeholder": "Assegna a...",
       "members_group": "Membri",
       "agents_group": "Agenti",
-      "squads_group": "Squadre"
+      "squads_group": "Squadre",
+      "agent_runtime_required": "Collega un runtime prima di assegnare lavoro a questo agente",
+      "squad_runtime_required": "Collega un runtime al capo di questa squadra prima di assegnarle lavoro"
     },
     "start_date": {
       "trigger_label": "Data di inizio",
-      "clear_action": "Azzera la data"
+      "none": "Nessuna data di inizio"
     },
     "due_date": {
       "trigger_label": "Scadenza",
-      "clear_action": "Azzera la data"
+      "none": "Nessuna scadenza"
     },
     "label": {
       "trigger_label": "Aggiungi un'etichetta",

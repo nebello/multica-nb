@@ -698,7 +698,7 @@
   },
   "telegram": {
     "section_title": "Telegram",
-    "page_description": "Un solo bot Telegram per questa istanza, a cui risponde l'agente che scegli. Si può scrivergli in privato o menzionarlo in un gruppo; vocali e foto arrivano come allegati.",
+    "page_description": "Un solo bot Telegram per questa istanza, a cui risponde l'agente che scegli. Si puo' scrivergli in privato o menzionarlo in un gruppo; vocali e foto arrivano come allegati.",
     "loading": "Caricamento…",
     "not_enabled_description_prefix": "Imposta",
     "not_enabled_description_suffix": "sul server per attivare il bot Telegram.",
@@ -711,16 +711,16 @@
     "save_rebind": "Sposta il bot",
     "saving": "Salvataggio…",
     "propagation_hint": "La modifica viene raccolta entro una trentina di secondi, senza riavviare.",
-    "owned_by_other_workspace": "Questo bot è già collegato a un altro workspace su questo server. Scollegalo da lì prima di collegarlo qui.",
+    "owned_by_other_workspace": "Questo bot e' gia' collegato a un altro workspace su questo server. Scollegalo da li' prima di collegarlo qui.",
     "disconnect": "Scollega",
     "disconnecting": "Scollegamento…",
     "disconnect_confirm_title": "Scollegare questo bot Telegram?",
     "disconnect_confirm_description": "Il bot smette di ricevere messaggi. L'installazione resta, quindi riscegliere un agente lo ricollega.",
     "disconnect_confirm_cancel": "Annulla",
     "toast_bound": "Bot Telegram collegato",
-    "toast_bind_failed": "Non è stato possibile collegare il bot Telegram",
+    "toast_bind_failed": "Non e' stato possibile collegare il bot Telegram",
     "toast_disconnected": "Bot Telegram scollegato",
-    "toast_disconnect_failed": "Non è stato possibile scollegare il bot Telegram"
+    "toast_disconnect_failed": "Non e' stato possibile scollegare il bot Telegram"
   },
   "slack": {
     "section_title": "Slack",

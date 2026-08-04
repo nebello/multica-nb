@@ -14,12 +14,14 @@
     "placeholder_no_agent": "Crea un agente per iniziare a chattare",
     "placeholder_archived": "Questa sessione è archiviata",
     "placeholder_archived_agent": "Questo agente è stato archiviato",
+    "placeholder_runtime_required": "Collega un runtime per continuare",
     "placeholder_named": "Scrivi a {{name}}…",
     "placeholder_default": "Scrivi un messaggio…",
     "send_tooltip": "Invia",
     "stop_tooltip": "Ferma",
     "send_failed_toast": "Invio del messaggio non riuscito",
     "send_blocked_toast": "Messaggio non inviato — non hai più i permessi per usare questo agente",
+    "runtime_required_toast": "Messaggio non inviato — collega prima un runtime a questo agente",
     "attachment_bind_failed_toast": "Messaggio inviato, ma i file non sono stati allegati. Riprova tra un momento.",
     "add_tooltip": "Aggiungi",
     "upload_file": "Immagine o file",
@@ -115,7 +117,9 @@
     "others": "Altri",
     "no_agents": "Nessun agente",
     "history_group": "Cronologia delle chat",
-    "agent_filter_placeholder": "Cerca agenti..."
+    "agent_filter_placeholder": "Cerca agenti...",
+    "agent_needs_runtime": "Serve un runtime",
+    "agent_needs_runtime_hint": "Collega un runtime prima di aprire una chat con questo agente"
   },
   "empty_state": {
     "first_time_title": "Chatta con i tuoi agenti",
@@ -135,6 +139,11 @@
   },
   "no_agent_banner": "Ti serve un agente per iniziare a chattare.",
   "archived_agent_banner": "{{name}} è stato archiviato — questa conversazione è in sola lettura.",
+  "runtime_required_banner": {
+    "fallback_name": "L'agente",
+    "message": "A {{name}} serve un runtime prima di poter rispondere.",
+    "action": "Collega un runtime"
+  },
   "offline_banner": {
     "fallback_name": "l'agente",
     "unstable": "La connessione di {{name}} è instabile — le risposte potrebbero tardare.",
