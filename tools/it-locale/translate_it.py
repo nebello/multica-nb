@@ -739,6 +739,8 @@ T["issues"] = {
     "pickers.assignee.squad_runtime_required": "Collega un runtime al capo di questa squadra prima di assegnarle lavoro",
     "pickers.start_date.none": "Nessuna data di inizio",
     "pickers.due_date.none": "Nessuna scadenza",
+    "subscribers.unsubscribe_subtree_succeeded": "Non segui più questa issue e le sue sotto-issue.",
+    "subscribers.subscription_update_failed": "Non è stato possibile aggiornare la sottoscrizione. Riprova.",
 }
 
 

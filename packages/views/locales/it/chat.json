@@ -18,6 +18,7 @@
     "placeholder_named": "Scrivi a {{name}}…",
     "placeholder_default": "Scrivi un messaggio…",
     "send_tooltip": "Invia",
+    "queue_send_tooltip": "Queue message",
     "stop_tooltip": "Ferma",
     "send_failed_toast": "Invio del messaggio non riuscito",
     "send_blocked_toast": "Messaggio non inviato — non hai più i permessi per usare questo agente",
@@ -30,6 +31,16 @@
     "remove_project_context": "Rimuovi il contesto del progetto",
     "no_projects": "Nessun progetto",
     "project_context_unsupported": "La descrizione del progetto non verrà applicata — il daemon di questo agente va aggiornato"
+  },
+  "queue": {
+    "title_one": "{{count}} queued message",
+    "title_other": "{{count}} queued messages",
+    "clear": "Clear all",
+    "send_now": "Send now",
+    "edit": "Edit queued message",
+    "remove": "Remove queued message",
+    "fallback": "Queued message",
+    "action_failed_toast": "Couldn't update the queued message"
   },
   "message_list": {
     "show_details": "Mostra i dettagli",
