@@ -13,7 +13,8 @@
     "mark_read": "Segna come letto",
     "mark_unread": "Segna come non letto",
     "archive": "Archivia",
-    "unarchive": "Togli dall'archivio"
+    "unarchive": "Togli dall'archivio",
+    "open_in_new_tab": "Open in new tab"
   },
   "list": {
     "empty": "Nessuna notifica",
