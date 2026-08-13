@@ -114,7 +114,8 @@
       "cancel": "Annulla",
       "confirm": "Elimina",
       "confirming": "Eliminazione..."
-    }
+    },
+    "row_actions_aria": "Chat actions"
   },
   "window": {
     "new_chat_tooltip": "Nuova chat",
@@ -219,7 +220,8 @@
     "pinned": "Fissata",
     "archive": "Archivia",
     "unarchive": "Togli dall'archivio",
-    "archived_title": "Archiviate"
+    "archived_title": "Archiviate",
+    "row_actions_aria": "Chat actions"
   },
   "header": {
     "view_profile": "Vedi il profilo dell'agente",

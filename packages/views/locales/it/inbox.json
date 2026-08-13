@@ -28,7 +28,8 @@
     },
     "archived_title": "Archiviate",
     "archived_empty": "Nessuna notifica archiviata",
-    "unarchive_tooltip": "Togli dall'archivio"
+    "unarchive_tooltip": "Togli dall'archivio",
+    "actions_aria": "Notification actions"
   },
   "detail": {
     "select_prompt": "Scegli una notifica per vederne i dettagli",
