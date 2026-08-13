@@ -161,4 +161,25 @@ describe("Settings IntegrationsTab", () => {
 
     expect(screen.getByTestId("telegram-tab")).toBeInTheDocument();
   });
+
+  // Telegram is the one channel upstream never renders, so it is also the one
+  // that silently falls out of step when the tab is restyled — it shipped
+  // without an icon or a description for exactly as long as v0.4.24 took to
+  // arrive. This asserts it carries the same brand mark and description as the
+  // rest of the rows, and that the mark is its own shape rather than a copy of
+  // a neighbour's.
+  it("gives Telegram the same brand mark and description as the other channels", () => {
+    renderTab();
+
+    const icon = screen.getByTestId("integration-channel-icon-telegram");
+    const description = icon.closest("h3")?.nextElementSibling;
+
+    expect(description?.tagName).toBe("P");
+    expect(description).toHaveClass("text-caption", "text-muted-foreground");
+
+    const others = ["lark", "slack", "dingtalk", "wecom"].map(
+      (channel) => screen.getByTestId(`integration-channel-icon-${channel}`).innerHTML,
+    );
+    expect(others).not.toContain(icon.innerHTML);
+  });
 });

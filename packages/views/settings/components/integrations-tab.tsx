@@ -84,7 +84,15 @@ export function IntegrationsTab() {
           explains the unconfigured case. Deliberate: keeping IntegrationsTab
           free of workspace-scoped hooks is what lets it be rendered (and
           tested) with the child panels mocked out. */}
-      <SettingsSection title={t(($) => $.telegram.section_title)}>
+      <SettingsSection
+        title={
+          <span className="flex items-center gap-2">
+            <IntegrationChannelIcon channel="telegram" />
+            {t(($) => $.telegram.section_title)}
+          </span>
+        }
+        description={t(($) => $.telegram.page_description)}
+      >
         <TelegramTab />
       </SettingsSection>
       {vcsAvailable && (
