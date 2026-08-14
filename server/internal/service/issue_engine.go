@@ -2,6 +2,8 @@ package service
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 	"log/slog"
 
 	"github.com/jackc/pgx/v5/pgtype"
@@ -47,6 +49,64 @@ type IssueEngineOverride struct {
 // the resolution without either importing the other.
 type issueEngineQueries interface {
 	GetAgentRuntimeForWorkspace(ctx context.Context, arg db.GetAgentRuntimeForWorkspaceParams) (db.AgentRuntime, error)
+}
+
+// issueEngineWriteQueries is the write half, used only by the sub-issue
+// inheritance below.
+type issueEngineWriteQueries interface {
+	SetIssueMetadataKey(ctx context.Context, arg db.SetIssueMetadataKeyParams) (db.Issue, error)
+}
+
+// InheritIssueEngine copies a parent's pinned engine onto a freshly created
+// sub-issue and returns the child as it now stands. A parent that pins nothing
+// writes nothing.
+//
+// Copied, not looked up through the parent chain at dispatch time. Two reasons:
+// the child's keys are then its own, so pointing one sub-issue at a different
+// engine is an ordinary metadata write with nothing to un-inherit; and the
+// enqueue path — the one that decides whether a task is created at all — gains
+// no parent walk it could fail on. The cost is snapshot semantics: re-pinning
+// the parent later does not reach sub-issues that already exist, exactly like
+// the project the child inherits at creation.
+func InheritIssueEngine(ctx context.Context, q issueEngineWriteQueries, parent, child db.Issue) (db.Issue, error) {
+	ov := ParseIssueEngineOverride(parent.Metadata)
+	if !ov.RuntimeID.Valid && ov.Model == "" {
+		return child, nil
+	}
+	out := child
+	copyKey := func(key, value string) error {
+		encoded, err := json.Marshal(value)
+		if err != nil {
+			return err
+		}
+		updated, err := q.SetIssueMetadataKey(ctx, db.SetIssueMetadataKeyParams{
+			ID:          child.ID,
+			WorkspaceID: child.WorkspaceID,
+			Key:         key,
+			Value:       encoded,
+		})
+		if err != nil {
+			return err
+		}
+		out = updated
+		return nil
+	}
+	if ov.RuntimeID.Valid {
+		if err := copyKey(IssueEngineRuntimeKey, util.UUIDToString(ov.RuntimeID)); err != nil {
+			return child, fmt.Errorf("copy %s from parent: %w", IssueEngineRuntimeKey, err)
+		}
+	}
+	if ov.Model != "" {
+		if err := copyKey(IssueEngineModelKey, ov.Model); err != nil {
+			return child, fmt.Errorf("copy %s from parent: %w", IssueEngineModelKey, err)
+		}
+	}
+	slog.Info("sub-issue inherited the parent's pinned engine",
+		"issue_id", util.UUIDToString(child.ID),
+		"parent_issue_id", util.UUIDToString(parent.ID),
+		"runtime_id", util.UUIDToString(ov.RuntimeID),
+		"model", ov.Model)
+	return out, nil
 }
 
 // ParseIssueEngineOverride reads the pinned engine choice out of an issue's

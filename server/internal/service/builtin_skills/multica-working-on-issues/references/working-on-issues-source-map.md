@@ -172,6 +172,7 @@ comment-triggered runs otherwise must not change status unless asked.
 | Reserved `engine_runtime_id` / `engine_model` keys | `server/internal/service/issue_engine.go` |
 | Pinned engine applied at enqueue | `server/internal/service/task.go` (`ResolveIssueRuntimeID` call sites) |
 | Pinned model applied at claim | `server/internal/handler/daemon.go` (`ApplyIssueEngineOverride`) |
+| Sub-issue inherits the parent's pinned engine at creation | `server/internal/service/issue.go` (`InheritIssueEngine` call, inside the create transaction) |
 
 `--value` is JSON-parsed by default (bool/number sniff); `--type` forces
 `string`/`number`/`bool`.

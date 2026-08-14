@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"testing"
 
@@ -115,6 +116,85 @@ type erroringIssueEngineQueries struct{}
 
 func (erroringIssueEngineQueries) GetAgentRuntimeForWorkspace(context.Context, db.GetAgentRuntimeForWorkspaceParams) (db.AgentRuntime, error) {
 	return db.AgentRuntime{}, errors.New("connection refused")
+}
+
+// recordingMetadataQueries captures the metadata writes inheritance performs
+// and echoes back a child whose bag contains them, so the test can assert on
+// the returned row as well as on the calls.
+type recordingMetadataQueries struct {
+	written map[string]string
+	err     error
+}
+
+func (r *recordingMetadataQueries) SetIssueMetadataKey(_ context.Context, arg db.SetIssueMetadataKeyParams) (db.Issue, error) {
+	if r.err != nil {
+		return db.Issue{}, r.err
+	}
+	if r.written == nil {
+		r.written = map[string]string{}
+	}
+	var value string
+	if err := json.Unmarshal(arg.Value, &value); err != nil {
+		return db.Issue{}, err
+	}
+	r.written[arg.Key] = value
+	bag, _ := json.Marshal(r.written)
+	return db.Issue{ID: arg.ID, WorkspaceID: arg.WorkspaceID, Metadata: bag}, nil
+}
+
+func TestInheritIssueEngine(t *testing.T) {
+	child := db.Issue{ID: mustUUID(t, testRuntimeA), WorkspaceID: mustUUID(t, testRuntimeB)}
+
+	t.Run("parent pinning nothing writes nothing", func(t *testing.T) {
+		q := &recordingMetadataQueries{}
+		parent := db.Issue{Metadata: []byte(`{"pr_url":"https://example.test/1"}`)}
+		got, err := InheritIssueEngine(context.Background(), q, parent, child)
+		if err != nil {
+			t.Fatalf("err = %v", err)
+		}
+		if len(q.written) != 0 {
+			t.Fatalf("wrote %v, want no writes", q.written)
+		}
+		if len(got.Metadata) != 0 {
+			t.Fatalf("child metadata = %s, want untouched", got.Metadata)
+		}
+	})
+
+	t.Run("engine and model are both copied down", func(t *testing.T) {
+		q := &recordingMetadataQueries{}
+		parent := db.Issue{Metadata: []byte(`{"engine_runtime_id":"` + testRuntimeB + `","engine_model":"deepseek"}`)}
+		got, err := InheritIssueEngine(context.Background(), q, parent, child)
+		if err != nil {
+			t.Fatalf("err = %v", err)
+		}
+		if q.written[IssueEngineRuntimeKey] != testRuntimeB || q.written[IssueEngineModelKey] != "deepseek" {
+			t.Fatalf("wrote %v, want the parent's engine and model", q.written)
+		}
+		// The returned child must carry the inherited keys: the assigned task is
+		// queued from this row inside the same transaction.
+		if ov := ParseIssueEngineOverride(got.Metadata); util.UUIDToString(ov.RuntimeID) != testRuntimeB || ov.Model != "deepseek" {
+			t.Fatalf("returned child resolves to %+v, want the inherited engine", ov)
+		}
+	})
+
+	t.Run("a parent pinning only the engine copies only the engine", func(t *testing.T) {
+		q := &recordingMetadataQueries{}
+		parent := db.Issue{Metadata: []byte(`{"engine_runtime_id":"` + testRuntimeB + `"}`)}
+		if _, err := InheritIssueEngine(context.Background(), q, parent, child); err != nil {
+			t.Fatalf("err = %v", err)
+		}
+		if _, present := q.written[IssueEngineModelKey]; present {
+			t.Fatalf("wrote %v, want no model key", q.written)
+		}
+	})
+
+	t.Run("a failed copy fails the create instead of half-inheriting", func(t *testing.T) {
+		q := &recordingMetadataQueries{err: errors.New("connection refused")}
+		parent := db.Issue{Metadata: []byte(`{"engine_runtime_id":"` + testRuntimeB + `"}`)}
+		if _, err := InheritIssueEngine(context.Background(), q, parent, child); err == nil {
+			t.Fatal("err = nil, want the write failure surfaced")
+		}
+	})
 }
 
 func TestApplyIssueEngineOverride(t *testing.T) {

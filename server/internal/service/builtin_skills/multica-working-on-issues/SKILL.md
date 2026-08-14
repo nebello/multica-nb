@@ -155,6 +155,11 @@ touching the agent. `engine_model` is a model id for most runtimes, but an
 openclaw AGENT id when the pinned runtime is openclaw. An `engine_runtime_id`
 that names no usable runtime is ignored and the agent's own engine is used.
 
+A sub-issue inherits both keys from its parent at creation, the same way it
+inherits the parent's project. They are copied onto the child, so overwriting
+or deleting them on the child changes only that sub-issue — and re-pinning the
+parent afterwards does not reach sub-issues that already exist.
+
 ## Custom properties: typed workflow state
 
 Workspaces may define custom issue properties (Severity, Environment, QA
