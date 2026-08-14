@@ -1106,8 +1106,12 @@ func (s *TaskService) enqueueIssueTaskWithCommentPlan(ctx context.Context, issue
 	runtimeMCPOverlay := s.buildRuntimeMCPOverlay(ctx, originatorUserID, agent)
 	attrSource, attrDelegatedFrom, attrEvidenceKind, attrEvidenceRef := attributionCreateParams(attr)
 	createParams := db.CreateAgentTaskParams{
-		AgentID:              issue.AssigneeID,
-		RuntimeID:            agent.RuntimeID,
+		AgentID: issue.AssigneeID,
+		// The issue's pinned engine wins over the agent's own runtime when it
+		// names a usable one; ResolveIssueRuntimeID falls back to the agent
+		// otherwise, so this can never queue a task onto a runtime that does
+		// not exist (NEB-648).
+		RuntimeID:            ResolveIssueRuntimeID(ctx, s.Queries, issue, agent.RuntimeID),
 		IssueID:              issue.ID,
 		Priority:             priorityToInt(issue.Priority),
 		TriggerCommentID:     triggerCommentID,
@@ -1256,8 +1260,10 @@ func (s *TaskService) enqueueMentionTaskWithCommentPlan(ctx context.Context, iss
 	runtimeMCPOverlay := s.buildRuntimeMCPOverlay(ctx, originatorUserID, agent)
 	attrSource, attrDelegatedFrom, attrEvidenceKind, attrEvidenceRef := attributionCreateParams(attr)
 	task, err := s.Queries.CreateAgentTask(ctx, db.CreateAgentTaskParams{
-		AgentID:              agentID,
-		RuntimeID:            agent.RuntimeID,
+		AgentID: agentID,
+		// Issue-scoped engine: a mentioned agent runs on the engine the issue
+		// is pinned to, not on its own (NEB-648).
+		RuntimeID:            ResolveIssueRuntimeID(ctx, s.Queries, issue, agent.RuntimeID),
 		IssueID:              issue.ID,
 		Priority:             priorityToInt(issue.Priority),
 		TriggerCommentID:     triggerCommentID,
@@ -1337,8 +1343,10 @@ func (s *TaskService) EnqueueDeferredAssigneeFallback(ctx context.Context, issue
 	attrSource, attrDelegatedFrom, attrEvidenceKind, attrEvidenceRef := attributionCreateParams(attr)
 	isLeader := squadID.Valid
 	task, err := s.Queries.CreateDeferredAgentTask(ctx, db.CreateDeferredAgentTaskParams{
-		AgentID:              agentID,
-		RuntimeID:            agent.RuntimeID,
+		AgentID: agentID,
+		// Same issue-scoped engine as the routed task this one falls back for
+		// (NEB-648).
+		RuntimeID:            ResolveIssueRuntimeID(ctx, s.Queries, issue, agent.RuntimeID),
 		IssueID:              issue.ID,
 		Priority:             priorityToInt(issue.Priority),
 		TriggerCommentID:     triggerCommentID,

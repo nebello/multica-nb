@@ -148,6 +148,13 @@ multica issue metadata delete <issue-id> --key <stale-key>
 `--value` is JSON-parsed by default (bool/number are sniffed); pass `--type
 string|number|bool` to force a type.
 
+Two keys are reserved by the platform and do change behavior: `engine_runtime_id`
+(a runtime UUID of this workspace) and `engine_model` pin the engine every task
+of THAT issue runs on, overriding the assignee's own runtime and model without
+touching the agent. `engine_model` is a model id for most runtimes, but an
+openclaw AGENT id when the pinned runtime is openclaw. An `engine_runtime_id`
+that names no usable runtime is ignored and the agent's own engine is used.
+
 ## Custom properties: typed workflow state
 
 Workspaces may define custom issue properties (Severity, Environment, QA

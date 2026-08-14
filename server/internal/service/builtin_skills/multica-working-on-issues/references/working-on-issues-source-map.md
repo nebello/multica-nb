@@ -169,6 +169,9 @@ comment-triggered runs otherwise must not change status unless asked.
 | `multica issue metadata set <issue-id> --key --value [--type]` | `server/cmd/multica/cmd_issue_metadata.go:80,109-111` |
 | `multica issue metadata delete <issue-id> --key` | `server/cmd/multica/cmd_issue_metadata.go:93,113` |
 | API routes (PUT/DELETE `/metadata/{key}`) | `server/cmd/server/router.go:478-479` |
+| Reserved `engine_runtime_id` / `engine_model` keys | `server/internal/service/issue_engine.go` |
+| Pinned engine applied at enqueue | `server/internal/service/task.go` (`ResolveIssueRuntimeID` call sites) |
+| Pinned model applied at claim | `server/internal/handler/daemon.go` (`ApplyIssueEngineOverride`) |
 
 `--value` is JSON-parsed by default (bool/number sniff); `--type` forces
 `string`/`number`/`bool`.
