@@ -1,5 +1,7 @@
 import type {
   Issue,
+  IssueMetadata,
+  IssueMetadataValue,
   IssuePriority,
   CreateIssueRequest,
   MoveIssueRequest,
@@ -220,6 +222,7 @@ import {
   ChildIssuesResponseSchema,
   CommentsListSchema,
   CommentTriggerPreviewSchema,
+  IssueMetadataResponseSchema,
   IssueTriggerPreviewSchema,
   CloudRuntimeNodeListSchema,
   CloudRuntimeNodeSchema,
@@ -1084,6 +1087,37 @@ export class ApiClient {
     return parseWithFallback(raw, IssueTriggerPreviewSchema, { triggers: [], total_count: 0 }, {
       endpoint: "POST /api/issues/preview-trigger",
     });
+  }
+
+  // Single-key metadata writes. The bag is never sent as a whole blob — every
+  // mutation is one key, atomically, because agents write their own pipeline
+  // keys into the same object concurrently (see the design note on
+  // server/internal/handler/issue_metadata.go).
+  async setIssueMetadataKey(
+    issueId: string,
+    key: string,
+    value: IssueMetadataValue,
+  ): Promise<IssueMetadata> {
+    const raw = await this.fetch<unknown>(
+      `/api/issues/${issueId}/metadata/${encodeURIComponent(key)}`,
+      { method: "PUT", body: JSON.stringify({ value }) },
+    );
+    return parseWithFallback(raw, IssueMetadataResponseSchema, { metadata: {} }, {
+      endpoint: "PUT /api/issues/{id}/metadata/{key}",
+    }).metadata;
+  }
+
+  async deleteIssueMetadataKey(
+    issueId: string,
+    key: string,
+  ): Promise<IssueMetadata> {
+    const raw = await this.fetch<unknown>(
+      `/api/issues/${issueId}/metadata/${encodeURIComponent(key)}`,
+      { method: "DELETE" },
+    );
+    return parseWithFallback(raw, IssueMetadataResponseSchema, { metadata: {} }, {
+      endpoint: "DELETE /api/issues/{id}/metadata/{key}",
+    }).metadata;
   }
 
   async listTimeline(issueId: string): Promise<TimelineEntry[]> {

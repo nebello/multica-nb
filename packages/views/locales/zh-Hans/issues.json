@@ -471,6 +471,28 @@
     "hint": "调整或清除筛选条件，就能看到这个视图里的任务。",
     "clear_button": "清除筛选"
   },
+  "engine_pin": {
+    "title": "该议题的引擎",
+    "description": "对该议题之后的每次运行生效。过去运行实际使用的模型在执行记录里。",
+    "runtime_label": "引擎",
+    "model_label": "模型",
+    "openclaw_agent_label": "openclaw 智能体",
+    "openclaw_agent_hint": "模型由 openclaw 自己决定，这里选它已配置的智能体。",
+    "engine_default": "引擎默认",
+    "loading": "正在加载引擎…",
+    "no_runtimes": "没有可用的引擎",
+    "discovering": "正在读取目录…",
+    "discovery_failed": "无法获取目录 — 已设置的值保持不变",
+    "runtime_offline": "引擎离线 — 无法获取目录",
+    "remove": "清除已设置的引擎",
+    "unknown_runtime": "未知引擎",
+    "agent_runtime": "智能体的引擎",
+    "chip_prefix": "已设置",
+    "chip_openclaw_agent": "智能体 {{agent}}",
+    "chip_aria": "已设置引擎：{{engine}} · {{model}}",
+    "chat_pill_unset": "引擎",
+    "chat_pill_unset_aria": "为 {{issue}} 选择引擎和模型"
+  },
   "agent_live": {
     "is_working": "{{name}} 在工作",
     "is_queued": "{{name}} 排队中",

@@ -70,6 +70,7 @@ import { useChatTaskActions } from "./use-chat-task-actions";
 import { useChatInputFocus } from "./use-chat-input-focus";
 import { ChatMessageList, ChatMessageSkeleton } from "./chat-message-list";
 import { ChatInput } from "./chat-input";
+import { ChatEnginePill } from "./chat-engine-pill";
 import { ChatQueue } from "./chat-queue";
 import { ChatResizeHandles } from "./chat-resize-handles";
 import { useChatContextItems } from "./use-chat-context-items";
@@ -965,6 +966,11 @@ export function ChatWindow() {
             onSelect={handleSelectAgent}
           />
         }
+        // Engine choice at launch: only shown once the draft names one issue,
+        // because the choice is stored on that issue.
+        issueAdornment={(issueId) => (
+          <ChatEnginePill wsId={wsId} issueId={issueId} />
+        )}
         contextItems={contextItems}
         focusRequest={focusRequest}
       />

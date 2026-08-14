@@ -471,6 +471,28 @@
     "hint": "フィルターを変更または解除すると、このビューのタスクが表示されます。",
     "clear_button": "フィルターを解除"
   },
+  "engine_pin": {
+    "title": "このイシューのエンジン",
+    "description": "このイシューの次回以降の実行すべてに適用されます。過去の実行が実際に使ったモデルは実行ログにあります。",
+    "runtime_label": "エンジン",
+    "model_label": "モデル",
+    "openclaw_agent_label": "openclaw エージェント",
+    "openclaw_agent_hint": "モデルは openclaw 側が決めます。ここでは設定済みのエージェントを選びます。",
+    "engine_default": "エンジンの既定",
+    "loading": "エンジンを読み込み中…",
+    "no_runtimes": "利用できるエンジンがありません",
+    "discovering": "カタログを取得中…",
+    "discovery_failed": "カタログを取得できません — 設定値はそのまま",
+    "runtime_offline": "エンジンがオフライン — カタログを取得できません",
+    "remove": "設定したエンジンを解除",
+    "unknown_runtime": "不明なエンジン",
+    "agent_runtime": "エージェントのエンジン",
+    "chip_prefix": "設定",
+    "chip_openclaw_agent": "エージェント {{agent}}",
+    "chip_aria": "設定エンジン: {{engine}} · {{model}}",
+    "chat_pill_unset": "エンジン",
+    "chat_pill_unset_aria": "{{issue}} のエンジンとモデルを選ぶ"
+  },
   "agent_live": {
     "is_working": "{{name}} が作業中",
     "is_queued": "{{name}} が待機中",

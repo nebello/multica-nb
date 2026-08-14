@@ -492,6 +492,28 @@
     "hint": "Modifica o azzera i filtri per vedere le issue di questa vista.",
     "clear_button": "Azzera i filtri"
   },
+  "engine_pin": {
+    "title": "Motore di questa issue",
+    "description": "Vale per ogni run successivo di questa issue. Il modello davvero usato dai run passati è nel registro esecuzioni.",
+    "runtime_label": "Motore",
+    "model_label": "Modello",
+    "openclaw_agent_label": "Agente openclaw",
+    "openclaw_agent_hint": "Il modello lo sceglie openclaw: qui si sceglie uno dei suoi agenti configurati.",
+    "engine_default": "Predefinito del motore",
+    "loading": "Carico i motori…",
+    "no_runtimes": "Nessun motore disponibile",
+    "discovering": "Leggo il catalogo…",
+    "discovery_failed": "Catalogo non raggiungibile — il valore impostato resta",
+    "runtime_offline": "Motore offline — catalogo non disponibile",
+    "remove": "Togli il motore impostato",
+    "unknown_runtime": "Motore sconosciuto",
+    "agent_runtime": "Motore dell'agente",
+    "chip_prefix": "Impostato",
+    "chip_openclaw_agent": "agente {{agent}}",
+    "chip_aria": "Motore impostato: {{engine}} · {{model}}",
+    "chat_pill_unset": "Motore",
+    "chat_pill_unset_aria": "Scegli motore e modello per {{issue}}"
+  },
   "agent_live": {
     "is_working": "{{name}} è al lavoro",
     "is_queued": "{{name}} è in coda",

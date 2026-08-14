@@ -877,6 +877,13 @@ export const IssueTriggerPreviewSchema = z.object({
 // to {} so consumers never need to nil-guard `issue.metadata`.
 const IssueMetadataSchema = z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])).default({});
 
+// Response of the single-key metadata writes (`PUT`/`DELETE
+// /api/issues/:id/metadata/:key`): the whole bag as it now stands, which is
+// what the caller feeds back into the issue caches.
+export const IssueMetadataResponseSchema = z.object({
+  metadata: IssueMetadataSchema,
+}).loose();
+
 export const IssueSchema = z.object({
   id: z.string(),
   workspace_id: z.string(),

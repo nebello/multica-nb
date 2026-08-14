@@ -492,6 +492,28 @@
     "hint": "Adjust or clear the filters to see the issues in this view.",
     "clear_button": "Clear filters"
   },
+  "engine_pin": {
+    "title": "Engine for this issue",
+    "description": "Applies to every next run of this issue. What a past run actually used is in the execution log.",
+    "runtime_label": "Engine",
+    "model_label": "Model",
+    "openclaw_agent_label": "openclaw agent",
+    "openclaw_agent_hint": "openclaw decides the model itself — pick one of its configured agents.",
+    "engine_default": "Engine default",
+    "loading": "Loading engines…",
+    "no_runtimes": "No engine available",
+    "discovering": "Reading the catalog…",
+    "discovery_failed": "Catalog unavailable — the set value is kept",
+    "runtime_offline": "Engine offline — catalog unavailable",
+    "remove": "Clear the set engine",
+    "unknown_runtime": "Unknown engine",
+    "agent_runtime": "Agent engine",
+    "chip_prefix": "Set",
+    "chip_openclaw_agent": "agent {{agent}}",
+    "chip_aria": "Set engine: {{engine}} · {{model}}",
+    "chat_pill_unset": "Engine",
+    "chat_pill_unset_aria": "Choose engine and model for {{issue}}"
+  },
   "agent_live": {
     "is_working": "{{name}} is working",
     "is_queued": "{{name}} is queued",

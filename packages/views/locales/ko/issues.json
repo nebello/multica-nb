@@ -471,6 +471,28 @@
     "hint": "필터를 조정하거나 해제하면 이 보기의 태스크가 표시됩니다.",
     "clear_button": "필터 해제"
   },
+  "engine_pin": {
+    "title": "이 이슈의 엔진",
+    "description": "이 이슈의 다음 실행부터 모두 적용됩니다. 지난 실행이 실제로 쓴 모델은 실행 로그에 있습니다.",
+    "runtime_label": "엔진",
+    "model_label": "모델",
+    "openclaw_agent_label": "openclaw 에이전트",
+    "openclaw_agent_hint": "모델은 openclaw가 정합니다. 여기서는 설정된 에이전트를 고릅니다.",
+    "engine_default": "엔진 기본값",
+    "loading": "엔진 불러오는 중…",
+    "no_runtimes": "사용할 수 있는 엔진 없음",
+    "discovering": "카탈로그 읽는 중…",
+    "discovery_failed": "카탈로그를 가져올 수 없음 — 설정값은 유지",
+    "runtime_offline": "엔진 오프라인 — 카탈로그를 가져올 수 없음",
+    "remove": "설정한 엔진 해제",
+    "unknown_runtime": "알 수 없는 엔진",
+    "agent_runtime": "에이전트 엔진",
+    "chip_prefix": "설정",
+    "chip_openclaw_agent": "에이전트 {{agent}}",
+    "chip_aria": "설정된 엔진: {{engine}} · {{model}}",
+    "chat_pill_unset": "엔진",
+    "chat_pill_unset_aria": "{{issue}}의 엔진과 모델 선택"
+  },
   "agent_live": {
     "is_working": "{{name}} 작업 중",
     "is_queued": "{{name}} 대기 중",
