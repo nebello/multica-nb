@@ -40,6 +40,7 @@ import type {
   InboxItem,
   InboxWorkspaceUnread,
   Label,
+  IssueMetadata,
   IssueProperty,
   ListPropertiesResponse,
   QuickAction,
@@ -533,6 +534,17 @@ export const IssuePropertiesResponseSchema = z.object({
 
 export const EMPTY_ISSUE_PROPERTIES_RESPONSE: IssuePropertiesResponse = {
   properties: {},
+};
+
+// Both metadata writes answer with the FULL post-write bag, same contract as
+// the properties endpoints above. Lenient object so a server that grows extra
+// envelope fields keeps parsing.
+export const IssueMetadataResponseSchema = z.object({
+  metadata: z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])).default({}),
+}).loose();
+
+export const EMPTY_ISSUE_METADATA_RESPONSE: { metadata: IssueMetadata } = {
+  metadata: {},
 };
 
 export interface AppConfigResponse {

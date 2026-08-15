@@ -13,6 +13,7 @@ import {
   ChevronLeft,
   ChevronRight,
   CircleCheck,
+  Cpu,
   Milestone,
   MoreHorizontal,
   PanelRight,
@@ -51,12 +52,14 @@ import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, Command
 import { AvatarGroup, AvatarGroupCount } from "@multica/ui/components/ui/avatar";
 import { ActorAvatar } from "../../common/actor-avatar";
 import { PropRow } from "../../common/prop-row";
+import { IssueEngineRows } from "./engine-picker";
 import { PropertyIcon } from "../../common/property-icon";
 import type { Attachment, Issue, IssueProperty, IssueStatus, IssuePriority, TimelineEntry, UpdateIssueRequest } from "@multica/core/types";
 import { contentReferencesAttachment } from "@multica/core/types";
 import { STATUS_CONFIG, PRIORITY_CONFIG } from "@multica/core/issues/config";
 import { formatDateOnly, isPastDateOnly } from "@multica/core/issues/date";
 import { useUpdateIssue } from "@multica/core/issues/mutations";
+import { readIssueEnginePin } from "@multica/core/issues/engine";
 import { toast } from "sonner";
 import { StatusIcon, PriorityIcon, StatusPicker, PriorityPicker, StagePicker, StartDatePicker, DueDatePicker, AssigneePicker, LabelPicker } from ".";
 import { maxSiblingStage } from "./pickers/stage-picker";
@@ -369,7 +372,7 @@ const EMPTY_REPLIES: TimelineEntry[] = [];
 // its row and add-property entry are gated on `issue.parent_issue_id` at the
 // render site below — it stays in this list so seeding/visibility flow through
 // the same machinery as the other optional props.
-const OPTIONAL_PROP_KEYS = ["priority", "stage", "start_date", "due_date", "labels"] as const;
+const OPTIONAL_PROP_KEYS = ["priority", "stage", "start_date", "due_date", "labels", "engine"] as const;
 type OptionalPropKey = (typeof OPTIONAL_PROP_KEYS)[number];
 
 function isOptionalPropSet(
@@ -388,6 +391,11 @@ function isOptionalPropSet(
       return !!issue.due_date;
     case "labels":
       return attachedLabelsCount > 0;
+    // The engine rows show a SETTING, so they appear as soon as the issue
+    // pins a runtime — including a pin written from the CLI or by an agent,
+    // which is how the choice reaches most issues today (NEB-648).
+    case "engine":
+      return readIssueEnginePin(issue).runtimeId !== null;
   }
 }
 
@@ -2143,6 +2151,12 @@ export function IssueDetail({ issueId, onDelete, onDone, defaultSidebarOpen = tr
               />
             </PropRow>
           )}
+          {/* Engine + model: renders its own PropRows (the model row only
+              exists once an engine is pinned), so it sits in the grid as a
+              fragment rather than inside a single row. */}
+          {visibleOptionalProps.has("engine") && (
+            <IssueEngineRows issue={issue} defaultOpen={autoOpenProp === "engine"} />
+          )}
 
           {/* Custom properties — same progressive disclosure as the
               built-in optional props: a row renders when the issue has a
@@ -2213,12 +2227,16 @@ export function IssueDetail({ issueId, onDelete, onDone, defaultSidebarOpen = tr
                       {k === "labels" && (
                         <Tag className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
                       )}
+                      {k === "engine" && (
+                        <Cpu className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                      )}
                       <span className="truncate">
                         {k === "priority" && t(($) => $.detail.prop_priority)}
                         {k === "stage" && t(($) => $.detail.prop_stage)}
                         {k === "start_date" && t(($) => $.detail.prop_start_date)}
                         {k === "due_date" && t(($) => $.detail.prop_due_date)}
                         {k === "labels" && t(($) => $.detail.prop_labels)}
+                        {k === "engine" && t(($) => $.detail.prop_engine)}
                       </span>
                     </button>
                   ))}
