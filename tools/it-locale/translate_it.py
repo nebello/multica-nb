@@ -442,6 +442,15 @@ T["issues"] = {
     "detail.unsubscribe_subtree": "Smetti di seguire questa issue e le sue sotto-issue",
     "detail.unsubscribe_subtree_failed": "Non è stato possibile smettere di seguire le sotto-issue. Riprova.",
     "detail.unsubscribe_subtree_unsupported": "Il server di questo workspace non permette ancora di smettere di seguire le sotto-issue. Riprova dopo il prossimo aggiornamento.",
+    # Selettore del motore (NEB-648). Senza queste voci le stringhe scritte a
+    # mano in it/issues.json tornano in inglese alla prima rigenerazione.
+    "detail.prop_engine": "Motore",
+    "detail.prop_engine_model": "Modello",
+    "detail.prop_engine_openclaw_agent": "Agente OpenClaw",
+    "detail.engine_agent_default": "Motore dell'agente",
+    "detail.engine_unknown_runtime": "Motore non disponibile",
+    "detail.engine_runtime_offline": "offline",
+    "detail.engine_tooltip": "Motore su cui girerà ogni task di questa issue",
     "agent_activity.unknown_hover": "Agenti al lavoro: non ancora caricato",
     "filtered_empty.title": "Nessuna issue corrisponde a questi filtri",
     "filtered_empty.hint": "Modifica o azzera i filtri per vedere le issue di questa vista.",
