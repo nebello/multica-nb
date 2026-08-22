@@ -1,0 +1,37 @@
+{
+  "title": "Cerca",
+  "description": "Cerca fra pagine, issue, progetti e membri",
+  "placeholder": "Scrivi un comando o cerca...",
+  "groups": {
+    "pages": "Pagine",
+    "commands": "Comandi",
+    "members": "Membri",
+    "projects": "Progetti",
+    "issues": "Issue",
+    "cancelled": "Cancelled",
+    "recent": "Recenti"
+  },
+  "commands": {
+    "current_theme_aria": "Tema attuale",
+    "new_issue": "Nuova issue",
+    "new_project": "Nuovo progetto",
+    "copy_issue_link": "Copia il link della issue",
+    "copy_identifier": "Copia l'identificatore ({{identifier}})",
+    "fold_all_comments": "Chiudi tutti i commenti",
+    "unfold_all_comments": "Apri tutti i commenti",
+    "switch_to_light": "Passa al tema chiaro",
+    "switch_to_dark": "Passa al tema scuro",
+    "use_system_theme": "Usa il tema di sistema"
+  },
+  "toast": {
+    "link_copied": "Link copiato",
+    "copied_identifier": "Copiato {{identifier}}"
+  },
+  "empty": {
+    "no_results": "Nessun risultato.",
+    "type_to_search": "Scrivi per cercare fra issue e progetti"
+  },
+  "trigger": {
+    "label": "Cerca..."
+  }
+}

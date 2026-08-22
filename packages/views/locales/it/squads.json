@@ -1,0 +1,103 @@
+{
+  "page": {
+    "title": "Squadre",
+    "new_button": "Nuova squadra",
+    "empty_no_squads": "Nessuna squadra. Creane una per iniziare.",
+    "empty_no_match": "Nessuna squadra corrisponde ai filtri.",
+    "table": {
+      "name": "Squadra",
+      "leader": "Leader",
+      "members": "Membri",
+      "creator": "Creata da",
+      "created": "Creata"
+    },
+    "no_matches": "Nessuna squadra corrispondente",
+    "row_menu": "Azioni sulla squadra",
+    "archive_action": "Archivia"
+  },
+  "inspector": {
+    "details_section": "Dettagli",
+    "archive_button": "Archivia"
+  },
+  "archive_dialog": {
+    "title": "Archiviare questa squadra?",
+    "description": "«{{name}}» verrà archiviata. Le issue assegnate ora alla squadra passeranno al suo leader. L'azione non si può annullare: se ti serve di nuovo lo smistamento, crea una squadra nuova.",
+    "cancel": "Annulla",
+    "confirm": "Archivia",
+    "archiving": "Archiviazione…",
+    "success": "Squadra archiviata"
+  },
+  "name_editor": {
+    "cancel": "Annulla"
+  },
+  "add_member_dialog": {
+    "title": "Aggiungi un membro",
+    "description": "Aggiungi a questa squadra un membro del workspace o un agente.",
+    "label_member": "Membro",
+    "label_role": "Ruolo",
+    "label_optional": "(facoltativo)",
+    "placeholder_role_inline": "Aggiungi un ruolo…",
+    "cancel": "Annulla"
+  },
+  "description_dialog": {
+    "title": "Modifica la descrizione",
+    "placeholder_empty": "Aggiungi una descrizione",
+    "cancel": "Annulla"
+  },
+  "discard_changes_dialog": {
+    "title": "Scartare le modifiche non salvate?",
+    "description": "In questa scheda ci sono modifiche non salvate. Cambiando scheda le perdi.",
+    "keep_editing": "Continua a modificare",
+    "discard_button": "Scarta"
+  },
+  "members_tab": {
+    "section_title": "Membri",
+    "section_count_one": "{{count}} membro in questa squadra",
+    "section_count_other": "{{count}} membri in questa squadra",
+    "add_member_button": "Aggiungi un membro",
+    "create_agent_button": "Crea un agente",
+    "leader_chip": "Leader",
+    "view_agent_tooltip": "Apri il dettaglio dell'agente",
+    "make_leader_tooltip": "Rendi leader della squadra",
+    "remove_member_tooltip": "Togli dalla squadra",
+    "status_working": "Al lavoro",
+    "status_idle": "In attesa",
+    "status_offline": "Offline",
+    "status_unstable": "Instabile",
+    "status_archived": "Archiviato",
+    "issue_status_blocked": "bloccata",
+    "active_issue_more": "e altre {{count}}",
+    "last_active_label": "ultima attività {{time}}"
+  },
+  "profile_card": {
+    "unavailable": "Squadra non disponibile",
+    "detail_link": "Dettaglio →",
+    "archived": "Archiviata",
+    "member_count_one": "{{count}} membro",
+    "member_count_other": "{{count}} membri",
+    "members_section": "Membri",
+    "more_members_one": "+{{count}} more",
+    "more_members_other": "+{{count}} more"
+  },
+  "instructions_tab": {
+    "description": "Le istruzioni della squadra vengono iniettate nel prompt dell'agente leader ogni volta che lavora su una issue assegnata alla squadra. Servono a dargli indicazioni valide per tutti, accordi di lavoro, o contesto da seguire in ogni task.",
+    "unsaved_changes": "Modifiche non salvate",
+    "save_button": "Salva"
+  },
+  "scope": {
+    "mine": "Le mie",
+    "all": "Tutte"
+  },
+  "toolbar": {
+    "display": "Visualizza",
+    "sort_by": "Ordina per",
+    "direction_asc": "Crescente",
+    "direction_desc": "Decrescente",
+    "section_columns": "Colonne",
+    "result_count_title": "Squadre corrispondenti / squadre totali",
+    "filter_label": "Filtra",
+    "filter_active_count_one": "{{count}} filtro",
+    "filter_active_count_other": "{{count}} filtri",
+    "clear_filters": "Azzera i filtri"
+  }
+}

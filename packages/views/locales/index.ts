@@ -99,6 +99,31 @@ import jaUsage from "./ja/usage.json";
 import jaUi from "./ja/ui.json";
 import jaSquads from "./ja/squads.json";
 import jaBilling from "./ja/billing.json";
+import itCommon from "./it/common.json";
+import itAuth from "./it/auth.json";
+import itSettings from "./it/settings.json";
+import itIssues from "./it/issues.json";
+import itAgents from "./it/agents.json";
+import itEditor from "./it/editor.json";
+import itOnboarding from "./it/onboarding.json";
+import itInvite from "./it/invite.json";
+import itLabels from "./it/labels.json";
+import itMembers from "./it/members.json";
+import itMyIssues from "./it/my-issues.json";
+import itSearch from "./it/search.json";
+import itInbox from "./it/inbox.json";
+import itWorkspace from "./it/workspace.json";
+import itProjects from "./it/projects.json";
+import itAutopilots from "./it/autopilots.json";
+import itSkills from "./it/skills.json";
+import itChat from "./it/chat.json";
+import itModals from "./it/modals.json";
+import itRuntimes from "./it/runtimes.json";
+import itLayout from "./it/layout.json";
+import itUsage from "./it/usage.json";
+import itUi from "./it/ui.json";
+import itSquads from "./it/squads.json";
+import itBilling from "./it/billing.json";
 
 // Single source of truth for the resource bundle. Both apps (web layout +
 // desktop App.tsx) import from here so adding a locale or namespace happens
@@ -211,5 +236,32 @@ export const RESOURCES: Record<SupportedLocale, LocaleResources> = {
     ui: jaUi,
     squads: jaSquads,
     billing: jaBilling,
+  },
+  it: {
+    common: itCommon,
+    auth: itAuth,
+    settings: itSettings,
+    issues: itIssues,
+    agents: itAgents,
+    editor: itEditor,
+    onboarding: itOnboarding,
+    invite: itInvite,
+    labels: itLabels,
+    members: itMembers,
+    "my-issues": itMyIssues,
+    search: itSearch,
+    inbox: itInbox,
+    workspace: itWorkspace,
+    projects: itProjects,
+    autopilots: itAutopilots,
+    skills: itSkills,
+    chat: itChat,
+    modals: itModals,
+    runtimes: itRuntimes,
+    layout: itLayout,
+    usage: itUsage,
+    ui: itUi,
+    squads: itSquads,
+    billing: itBilling,
   },
 };

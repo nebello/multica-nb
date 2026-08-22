@@ -1,0 +1,127 @@
+{
+  "avatar_upload": {
+    "change": "Cambia avatar",
+    "remove": "Rimuovi",
+    "select_image": "Scegli un file immagine.",
+    "updated": "Avatar aggiornato",
+    "failed": "Caricamento dell'avatar non riuscito",
+    "upload_image": "Carica un'immagine",
+    "emoji_label": "Emoji",
+    "more_emojis": "Altre emoji…",
+    "emoji_loading": "Caricamento…"
+  },
+  "avatar_crop": {
+    "title": "Modifica avatar",
+    "zoom": "Zoom",
+    "zoom_in": "Ingrandisci",
+    "zoom_out": "Riduci",
+    "rotate": "Ruota",
+    "reset": "Ripristina",
+    "cancel": "Annulla",
+    "apply": "Salva",
+    "uploading": "Caricamento…",
+    "loading": "Caricamento…",
+    "load_failed": "Non è stato possibile caricare l'immagine"
+  },
+  "color_picker": {
+    "saturation": "Saturazione e luminosità",
+    "hue": "Tonalità",
+    "hex": "Colore esadecimale",
+    "eyedropper": "Preleva un colore dallo schermo",
+    "presets": "Predefiniti",
+    "random": "Casuale"
+  },
+  "save": "Salva",
+  "cancel": "Annulla",
+  "delete": "Elimina",
+  "confirm": "Conferma",
+  "loading": "Caricamento...",
+  "time": {
+    "just_now": "adesso",
+    "minutes_ago": "{{count}} min fa",
+    "hours_ago": "{{count}} h fa",
+    "days_ago": "{{count}} g fa"
+  },
+  "lark_bind": {
+    "page_title": "Collega il tuo account Lark",
+    "redeeming": "Verifica del token di collegamento…",
+    "needs_auth_description": "Accedi a Multica per completare il collegamento. Il token nel link lega il tuo account Lark a questo utente Multica, quindi devi prima aver effettuato l'accesso.",
+    "sign_in": "Accedi",
+    "done_title": "Collegamento fatto.",
+    "done_description": "Il prossimo messaggio che scrivi al Bot su Lark andrà direttamente all'agente. Puoi chiudere questa scheda.",
+    "error_title": "Collegamento non completato",
+    "error_admin_hint": "Se continua a succedere, chiedi all'amministratore del workspace di rimandare il link di collegamento da Lark.",
+    "error_missing_token": "Nel link manca il token di collegamento. Chiedi al Bot di mandarne uno nuovo su Lark.",
+    "error_expired": "Questo link non è valido o è scaduto (i link valgono 15 minuti). Chiedi al Bot di mandarne uno nuovo.",
+    "error_already_bound": "Questo account Lark è già collegato a un altro utente Multica. Per trasferirlo serve prima scollegarlo esplicitamente.",
+    "error_not_member": "Hai effettuato l'accesso con un account Multica che non è membro di questo workspace.",
+    "error_unknown": "Qualcosa è andato storto. Riprova e, se il problema persiste, contatta l'amministratore del workspace."
+  },
+  "slack_bind": {
+    "page_title": "Collega il tuo account Slack",
+    "redeeming": "Collegamento dell'account…",
+    "needs_auth_description": "Accedi a Multica per completare il collegamento. Il token nel link lega il tuo account Slack a questo utente Multica, quindi devi prima aver effettuato l'accesso.",
+    "sign_in": "Accedi",
+    "done_title": "Collegamento fatto.",
+    "done_description": "Il prossimo messaggio che scrivi al bot su Slack andrà direttamente all'agente. Puoi chiudere questa scheda.",
+    "error_title": "Collegamento non completato",
+    "error_admin_hint": "Se continua a succedere, scrivi di nuovo al bot su Slack per ottenere un link fresco.",
+    "error_missing_token": "Nel link manca il token. Scrivi di nuovo al bot su Slack per ottenerne uno nuovo.",
+    "error_expired": "Questo link non è valido o è scaduto (i link valgono 15 minuti). Scrivi di nuovo al bot per ottenerne uno nuovo.",
+    "error_already_bound": "Questo account Slack è già collegato a un altro utente Multica. Per trasferirlo serve prima scollegarlo esplicitamente.",
+    "error_not_member": "Hai effettuato l'accesso con un account Multica che non è membro di questo workspace.",
+    "error_unknown": "Qualcosa è andato storto. Riprova e, se il problema persiste, contatta l'amministratore del workspace."
+  },
+  "dingtalk_bind": {
+    "page_title": "Link your DingTalk account",
+    "redeeming": "Linking your account…",
+    "needs_auth_description": "Sign in to Multica to complete the link. The token in the link binds your DingTalk account to this Multica user, so you must be logged in first.",
+    "sign_in": "Sign in",
+    "done_title": "You're linked.",
+    "done_description": "Your next message to the bot in DingTalk will go straight to the agent. You can close this tab.",
+    "error_title": "Couldn't complete the link",
+    "error_admin_hint": "If this keeps happening, message the bot again in DingTalk to get a fresh link.",
+    "error_missing_token": "The link is missing its token. Message the bot again in DingTalk to get a new one.",
+    "error_expired": "This link is invalid or expired (links are valid for 15 minutes). Message the bot again to get a new one.",
+    "error_already_bound": "This DingTalk account is already linked to a different Multica user. Account transfers must go through an explicit unbind first.",
+    "error_not_member": "You're signed in to a Multica account that isn't a member of this workspace.",
+    "error_unknown": "Something went wrong. Try again, and if the problem persists, contact the workspace admin."
+  },
+  "telegram_bind": {
+    "page_title": "Link your Telegram account",
+    "redeeming": "Linking your account…",
+    "needs_auth_description": "Sign in to Multica to complete the link. The token in the link binds your Telegram account to this Multica user, so you must be logged in first.",
+    "sign_in": "Sign in",
+    "done_title": "You're linked.",
+    "done_description": "Your next message to the bot in Telegram will go straight to the agent. You can close this tab.",
+    "error_title": "Couldn't complete the link",
+    "error_admin_hint": "If this keeps happening, message the bot again in Telegram to get a fresh link.",
+    "error_missing_token": "The link is missing its token. Message the bot again in Telegram to get a new one.",
+    "error_expired": "This link is invalid or expired (links are valid for 15 minutes). Message the bot again to get a new one.",
+    "error_already_bound": "This Telegram account is already linked to a different Multica user. Account transfers must go through an explicit unbind first.",
+    "error_not_member": "You're signed in to a Multica account that isn't a member of this workspace.",
+    "error_unknown": "Something went wrong. Try again, and if the problem persists, contact the workspace admin."
+  },
+  "expandable_description": {
+    "expand": "Mostra tutto",
+    "collapse": "Mostra meno"
+  },
+  "wecom_bind": {
+    "page_title": "Link your Multica account",
+    "redeeming": "Linking your account…",
+    "needs_auth_description": "Sign in to Multica to complete the link. The token in the link binds your WeCom identity to this Multica user, so you must be logged in first.",
+    "sign_in": "Sign in",
+    "done_title": "You're linked.",
+    "done_description": "Your next message to the smart bot in WeCom will go straight to the agent. You can close this tab.",
+    "error_title": "Couldn't complete the link",
+    "error_admin_hint": "If this keeps happening, message the bot again in WeCom to get a fresh link.",
+    "error_missing_token": "The link is missing its token. Message the bot again in WeCom to get a new one.",
+    "error_expired": "This link is invalid or expired (links are valid for 15 minutes). Message the bot again to get a new one.",
+    "error_already_bound": "This WeCom identity is already linked to a different Multica user. Account transfers must go through an explicit unbind first.",
+    "error_not_member": "You're signed in to a Multica account that isn't a member of this workspace.",
+    "error_unknown": "Something went wrong. Try again, and if the problem persists, contact the workspace admin."
+  },
+  "navigation": {
+    "open_in_new_tab": "Open in new tab"
+  }
+}
