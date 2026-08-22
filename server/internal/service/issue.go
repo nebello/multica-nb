@@ -233,14 +233,19 @@ func (s *IssueService) Create(ctx context.Context, p IssueCreateParams, opts Iss
 	// WorkspaceID — there is no path from this service to a row in a
 	// foreign workspace.
 	projectID := p.ProjectID
+	// Held past the block below so the pinned-engine inheritance after the
+	// insert reads the parent this create already validated, instead of
+	// loading the same row twice.
+	var parent db.Issue
 	if p.ParentIssueID.Valid {
-		parent, err := qtx.GetIssueInWorkspace(ctx, db.GetIssueInWorkspaceParams{
+		loaded, err := qtx.GetIssueInWorkspace(ctx, db.GetIssueInWorkspaceParams{
 			ID:          p.ParentIssueID,
 			WorkspaceID: p.WorkspaceID,
 		})
-		if err != nil || !parent.ID.Valid {
+		if err != nil || !loaded.ID.Valid {
 			return IssueCreateResult{}, ErrParentIssueNotFound
 		}
+		parent = loaded
 		// Back-fill project from parent when the caller did not pin
 		// one explicitly. Matches the long-standing HTTP behavior: a
 		// sub-issue inherits its parent's project unless overridden.
@@ -341,6 +346,19 @@ func (s *IssueService) Create(ctx context.Context, p IssueCreateParams, opts Iss
 	}
 	if err != nil {
 		return IssueCreateResult{}, fmt.Errorf("create issue: %w", err)
+	}
+
+	// A sub-issue inherits its parent's pinned engine the same way it inherits
+	// the project above: copied once, here, so the child can then be pointed at
+	// a different engine without the parent dragging it back. Inside the create
+	// transaction because the assigned task below is queued from this very row
+	// — a child that inherits after its first task exists would run that task
+	// on the wrong engine (NEB-648).
+	if p.ParentIssueID.Valid {
+		issue, err = InheritIssueEngine(ctx, qtx, parent, issue)
+		if err != nil {
+			return IssueCreateResult{}, fmt.Errorf("inherit issue engine: %w", err)
+		}
 	}
 
 	// Attach labels inside the create transaction so the issue and its
