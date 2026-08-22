@@ -28,6 +28,7 @@ import type { MentionItem } from "../../editor/extensions/mention-suggestion";
 import type { Attachment, Project } from "@multica/core/types";
 import { ProjectPicker } from "../../projects/components/project-picker";
 import { ClearablePillButton } from "../../common/pill-button";
+import { soleMentionedIssueId } from "../lib/issue-mentions";
 import { useT } from "../../i18n";
 
 const logger = createLogger("chat.ui");
@@ -111,6 +112,13 @@ interface ChatInputProps {
   agentName?: string;
   /** Rendered at the bottom-left of the input bar — typically the agent picker. */
   leftAdornment?: ReactNode;
+  /**
+   * Adornment rendered on the composer's bottom row once the draft mentions
+   * exactly one issue — the per-issue engine pill. A render prop rather than a
+   * node because the target issue is read from the draft the composer owns, and
+   * reporting it upward would round-trip through the host on every keystroke.
+   */
+  issueAdornment?: (issueId: string) => ReactNode;
   /** Chat @ suggestions: current/recent issue/project entries. */
   contextItems?: MentionItem[];
   /** Optional project context for the draft or current chat session. */
@@ -152,6 +160,7 @@ export function ChatInput({
   agentRuntimeRequired,
   agentName,
   leftAdornment,
+  issueAdornment,
   contextItems,
   projects = [],
   projectId,
@@ -205,6 +214,14 @@ export function ChatInput({
   const setInputDraft = useChatStore((s) => s.setInputDraft);
   const setInputDraftAttachments = useChatStore((s) => s.setInputDraftAttachments);
   const clearInputDraft = useChatStore((s) => s.clearInputDraft);
+  // Which issue this draft is about, for the per-issue engine pill. Derived
+  // from the persisted draft (a debounce behind the editor), which is exactly
+  // the right cadence for a pill that opens a popover: it must not re-render
+  // per keystroke.
+  const mentionedIssueId = useMemo(
+    () => soleMentionedIssueId(inputDraft),
+    [inputDraft],
+  );
   const [isEmpty, setIsEmpty] = useState(!inputDraft.trim());
   // `isEmpty` tracks the LIVE editor, which the persisted draft lags by a
   // debounce, so the send affordance cannot be derived from `inputDraft` alone.
@@ -677,8 +694,14 @@ export function ChatInput({
             showBubbleMenu
           />
         </div>
-        {(uploadEnabled || projectSelectionEnabled || leftAdornment) && (
-          <div className="absolute bottom-1.5 left-1.5 flex items-center gap-1">
+        {(uploadEnabled ||
+          projectSelectionEnabled ||
+          leftAdornment ||
+          (issueAdornment && mentionedIssueId)) && (
+          // Capped short of the submit button on the opposite corner: the row
+          // grew a second pill, and in the narrow floating chat two pills at
+          // full width slide underneath it. Children truncate instead.
+          <div className="absolute bottom-1.5 left-1.5 flex max-w-[calc(100%-3rem)] items-center gap-1">
             {(uploadEnabled || projectSelectionEnabled) && (
               <ChatAddMenu
                 onSelectFile={uploadEnabled
@@ -691,6 +714,9 @@ export function ChatInput({
               />
             )}
             {leftAdornment}
+            {issueAdornment && mentionedIssueId
+              ? issueAdornment(mentionedIssueId)
+              : null}
           </div>
         )}
         <div className="absolute bottom-1 right-1.5 flex items-center gap-1">
