@@ -6,6 +6,7 @@ export * from "./ws-updaters";
 export * from "./workdir";
 export * from "./config";
 export * from "./stores";
+export * from "./engine";
 
 export {
   issueBehavesAs,
