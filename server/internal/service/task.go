@@ -1180,7 +1180,11 @@ func (s *TaskService) enqueueIssueTaskWithCommentPlan(ctx context.Context, issue
 	createParams := db.CreateAgentTaskParams{
 		ID:                   dbid.NewV7(),
 		AgentID:              issue.AssigneeID,
-		RuntimeID:            agent.RuntimeID,
+		// The issue's pinned engine wins over the agent's own runtime when it
+		// names a usable one; ResolveIssueRuntimeID falls back to the agent
+		// otherwise, so this can never queue a task onto a runtime that does
+		// not exist (NEB-648).
+		RuntimeID:            ResolveIssueRuntimeID(ctx, s.Queries, issue, agent.RuntimeID),
 		IssueID:              issue.ID,
 		Priority:             priorityToInt(issue.Priority),
 		TriggerCommentID:     triggerCommentID,
@@ -1332,7 +1336,9 @@ func (s *TaskService) enqueueMentionTaskWithCommentPlan(ctx context.Context, iss
 	task, err := s.Queries.CreateAgentTask(ctx, db.CreateAgentTaskParams{
 		ID:                   dbid.NewV7(),
 		AgentID:              agentID,
-		RuntimeID:            agent.RuntimeID,
+		// Issue-scoped engine: a mentioned agent runs on the engine the issue
+		// is pinned to, not on its own (NEB-648).
+		RuntimeID:            ResolveIssueRuntimeID(ctx, s.Queries, issue, agent.RuntimeID),
 		IssueID:              issue.ID,
 		Priority:             priorityToInt(issue.Priority),
 		TriggerCommentID:     triggerCommentID,
@@ -1414,7 +1420,9 @@ func (s *TaskService) EnqueueDeferredAssigneeFallback(ctx context.Context, issue
 	task, err := s.Queries.CreateDeferredAgentTask(ctx, db.CreateDeferredAgentTaskParams{
 		ID:                   dbid.NewV7(),
 		AgentID:              agentID,
-		RuntimeID:            agent.RuntimeID,
+		// Same issue-scoped engine as the routed task this one falls back for
+		// (NEB-648).
+		RuntimeID:            ResolveIssueRuntimeID(ctx, s.Queries, issue, agent.RuntimeID),
 		IssueID:              issue.ID,
 		Priority:             priorityToInt(issue.Priority),
 		TriggerCommentID:     triggerCommentID,

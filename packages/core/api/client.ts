@@ -1,5 +1,7 @@
 import type {
   Issue,
+  IssueMetadata,
+  IssueMetadataValue,
   IssuePriority,
   CreateIssueRequest,
   MoveIssueRequest,
@@ -384,6 +386,8 @@ import {
   EMPTY_ISSUE_PROPERTY,
   EMPTY_LIST_PROPERTIES_RESPONSE,
   EMPTY_ISSUE_PROPERTIES_RESPONSE,
+  IssueMetadataResponseSchema,
+  EMPTY_ISSUE_METADATA_RESPONSE,
   EMPTY_ISSUE_PULL_REQUESTS_RESPONSE,
   IssuePullRequestsResponseSchema,
   ResourceLabelsResponseSchema,
@@ -3692,6 +3696,25 @@ export class ApiClient {
     });
     return parseWithFallback(raw, IssuePropertiesResponseSchema, EMPTY_ISSUE_PROPERTIES_RESPONSE, {
       endpoint: "DELETE /api/issues/{id}/properties/{propertyId}",
+    });
+  }
+
+  async setIssueMetadataKey(issueId: string, key: string, value: IssueMetadataValue): Promise<{ metadata: IssueMetadata }> {
+    const raw = await this.fetch<unknown>(`/api/issues/${issueId}/metadata/${key}`, {
+      method: "PUT",
+      body: JSON.stringify({ value }),
+    });
+    return parseWithFallback(raw, IssueMetadataResponseSchema, EMPTY_ISSUE_METADATA_RESPONSE, {
+      endpoint: "PUT /api/issues/{id}/metadata/{key}",
+    });
+  }
+
+  async deleteIssueMetadataKey(issueId: string, key: string): Promise<{ metadata: IssueMetadata }> {
+    const raw = await this.fetch<unknown>(`/api/issues/${issueId}/metadata/${key}`, {
+      method: "DELETE",
+    });
+    return parseWithFallback(raw, IssueMetadataResponseSchema, EMPTY_ISSUE_METADATA_RESPONSE, {
+      endpoint: "DELETE /api/issues/{id}/metadata/{key}",
     });
   }
 

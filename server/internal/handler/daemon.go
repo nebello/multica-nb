@@ -2234,6 +2234,18 @@ func (h *Handler) buildClaimedTaskResponse(r *http.Request, task *db.AgentTaskQu
 		}
 		resp.ThreadName = issue.Title
 
+		// Per-issue engine (NEB-648): the agent payload assembled above
+		// carries the model tuning of the AGENT, which is the wrong answer
+		// when the issue pinned an engine of its own. The rewrite lands
+		// here rather than up there because the pinned choice lives on the
+		// issue row, which only this branch has loaded — the enqueue side
+		// already routed the task to the pinned runtime, so by now the two
+		// halves are describing the same engine.
+		if resp.Agent != nil {
+			resp.Agent.Model, resp.Agent.ThinkingLevel, resp.Agent.ServiceTier = service.ApplyIssueEngineOverride(
+				issue.Metadata, resp.Agent.Model, resp.Agent.ThinkingLevel, resp.Agent.ServiceTier)
+		}
+
 		// Squad-leader briefing injection: keyed off the task being a
 		// leader-task (is_leader_task) carrying a squad_id — NOT off the
 		// issue being assigned to a squad. The task flag is stamped at
