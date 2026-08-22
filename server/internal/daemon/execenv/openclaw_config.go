@@ -12,6 +12,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -969,7 +970,10 @@ func openclawResolvedFullConfig(bin string, timeout time.Duration) (map[string]a
 	defer cancel()
 	out, err := openclawExec(ctx, bin, "config", "get", "--json")
 	if err != nil {
-		return nil, annotateOpenclawJSONError(err, out)
+		if !isOpenclawRootPathRequired(err) {
+			return nil, annotateOpenclawJSONError(err, out)
+		}
+		return openclawResolvedConfigByKey(bin, timeout)
 	}
 	trimmed := strings.TrimSpace(out)
 	if trimmed == "" || trimmed == "null" {
@@ -978,6 +982,114 @@ func openclawResolvedFullConfig(bin string, timeout time.Duration) (map[string]a
 	var cfg map[string]any
 	if err := json.Unmarshal([]byte(trimmed), &cfg); err != nil {
 		return nil, fmt.Errorf("parse `openclaw config get --json` output: %w", err)
+	}
+	return cfg, nil
+}
+
+func isOpenclawRootPathRequired(err error) bool {
+	if err == nil {
+		return false
+	}
+	msg := strings.ToLower(err.Error())
+	return strings.Contains(msg, "missing required argument") && strings.Contains(msg, "path")
+}
+
+// openclawResolvedConfigByKey rebuilds the resolved root object one top-level
+// key at a time, for CLIs that no longer dump the root.
+//
+// The key list comes from `config schema` rather than from the user's file on
+// disk: a root-level `$include` can contribute keys the raw file never names,
+// and reading the file directly would also lose the JSON5 / env-substitution
+// pass that makes stripping `mcp.servers` reliable. Keys the user has not set
+// come back as "config path not found" and are skipped, which is why the
+// result is the resolved config and not the schema's defaults.
+//
+// ponytail: one CLI invocation per key, ~1s each, bounded to 8 at a time —
+// roughly six seconds for the ~46 keys of a 2026.7 schema. That only runs for
+// agents carrying a managed mcp_config, and only on CLIs that dropped the root
+// read. If OpenClaw grows a real root dump again (`config export`, or `get`
+// accepting a root token), collapse this back to the single call above.
+func openclawResolvedConfigByKey(bin string, timeout time.Duration) (map[string]any, error) {
+	schemaCtx, cancel := context.WithTimeout(context.Background(), timeout)
+	defer cancel()
+	rawSchema, err := openclawExec(schemaCtx, bin, "config", "schema")
+	if err != nil {
+		return nil, fmt.Errorf("read `openclaw config schema` for the root key list: %w", err)
+	}
+	var schema struct {
+		Properties map[string]json.RawMessage `json:"properties"`
+	}
+	if err := json.Unmarshal([]byte(strings.TrimSpace(rawSchema)), &schema); err != nil {
+		return nil, fmt.Errorf("parse `openclaw config schema` output: %w", err)
+	}
+	keys := make([]string, 0, len(schema.Properties))
+	for k := range schema.Properties {
+		// `$schema` is metadata of the schema document, not a config path.
+		if strings.HasPrefix(k, "$") {
+			continue
+		}
+		keys = append(keys, k)
+	}
+	if len(keys) == 0 {
+		return nil, fmt.Errorf("`openclaw config schema` declared no top-level properties")
+	}
+	sort.Strings(keys)
+
+	type result struct {
+		key   string
+		value any
+		err   error
+	}
+	results := make([]result, len(keys))
+	sem := make(chan struct{}, 8)
+	var wg sync.WaitGroup
+	for i, key := range keys {
+		wg.Add(1)
+		go func(i int, key string) {
+			defer wg.Done()
+			sem <- struct{}{}
+			defer func() { <-sem }()
+			keyCtx, keyCancel := context.WithTimeout(context.Background(), timeout)
+			defer keyCancel()
+			out, err := openclawExec(keyCtx, bin, "config", "get", key, "--json")
+			if err != nil {
+				// Not set by the user: skip it. Anything else is a real
+				// failure and must surface, so the daemon fails closed
+				// instead of writing a snapshot with holes in it.
+				if isOpenclawKeyMissing(err) {
+					return
+				}
+				results[i] = result{key: key, err: err}
+				return
+			}
+			trimmed := strings.TrimSpace(out)
+			if trimmed == "" || trimmed == "null" {
+				return
+			}
+			var v any
+			if jerr := json.Unmarshal([]byte(trimmed), &v); jerr != nil {
+				results[i] = result{key: key, err: fmt.Errorf("parse `openclaw config get %s --json` output: %w", key, jerr)}
+				return
+			}
+			results[i] = result{key: key, value: v}
+		}(i, key)
+	}
+	wg.Wait()
+
+	cfg := make(map[string]any, len(keys))
+	for _, r := range results {
+		if r.err != nil {
+			return nil, r.err
+		}
+		if r.key == "" || r.value == nil {
+			continue
+		}
+		cfg[r.key] = r.value
+	}
+	if len(cfg) == 0 {
+		// Same contract as the root read: nothing structured came back, so
+		// the caller treats it as "no user config to strip".
+		return nil, nil
 	}
 	return cfg, nil
 }
