@@ -1,0 +1,238 @@
+{
+  "page": {
+    "title": "Chat",
+    "select_prompt": "Scegli una conversazione, o aprine una nuova con +",
+    "agent_link_no_access": "Non hai accesso alla chat con questo agente."
+  },
+  "fab": {
+    "running": "Multica sta lavorando...",
+    "unread_one": "{{count}} chat non letta",
+    "unread_other": "{{count}} chat non lette",
+    "default": "Chiedi a Multica"
+  },
+  "input": {
+    "placeholder_no_agent": "Crea un agente per iniziare a chattare",
+    "placeholder_archived": "Questa sessione è archiviata",
+    "placeholder_archived_agent": "Questo agente è stato archiviato",
+    "placeholder_runtime_required": "Collega un runtime per continuare",
+    "placeholder_access_revoked": "You no longer have permission to run this agent",
+    "placeholder_named": "Scrivi a {{name}}…",
+    "placeholder_default": "Scrivi un messaggio…",
+    "send_tooltip": "Invia",
+    "queue_send_tooltip": "Queue message",
+    "stop_tooltip": "Ferma",
+    "send_failed_toast": "Invio del messaggio non riuscito",
+    "send_blocked_toast": "Messaggio non inviato — non hai più i permessi per usare questo agente",
+    "runtime_required_toast": "Messaggio non inviato — collega prima un runtime a questo agente",
+    "attachment_bind_failed_toast": "Messaggio inviato, ma i file non sono stati allegati. Riprova tra un momento.",
+    "add_tooltip": "Aggiungi",
+    "upload_file": "Immagine o file",
+    "project_context": "Contesto del progetto",
+    "change_project_context": "Cambia il contesto del progetto",
+    "remove_project_context": "Rimuovi il contesto del progetto",
+    "no_projects": "Nessun progetto",
+    "project_context_unsupported": "La descrizione del progetto non verrà applicata — il daemon di questo agente va aggiornato"
+  },
+  "queue": {
+    "title_one": "{{count}} queued message",
+    "title_other": "{{count}} queued messages",
+    "clear": "Clear all",
+    "steer": "Steer",
+    "steer_unavailable": "Steer is available after the current reply starts",
+    "steer_no_permission": "You no longer have permission to run this agent",
+    "steer_unavailable_toast": "Steer is unavailable. Refreshing the queue.",
+    "edit": "Edit queued message",
+    "remove": "Remove queued message",
+    "more": "More queue actions",
+    "fallback": "Queued message",
+    "action_failed_toast": "Couldn't update the queued message"
+  },
+  "message_list": {
+    "show_details": "Mostra i dettagli",
+    "replied_in": "Ha risposto in {{elapsed}}",
+    "failed_after": "Fallito dopo {{elapsed}}",
+    "finished_in": "Finito in {{elapsed}}",
+    "no_response": "L'agente ha concluso il turno senza una risposta scritta.",
+    "failure": {
+      "agent_error": "L'agente ha incontrato un errore e non è riuscito a finire la risposta. Riprova.",
+      "timeout": "L'agente ha impiegato troppo e si è fermato prima di finire. Riprova, o spezza la richiesta in passi più piccoli.",
+      "codex_semantic_inactivity": "L'agente è rimasto inattivo e si è fermato prima di finire. Riprova.",
+      "runtime_offline": "L'agente è offline in questo momento e non ha potuto rispondere. Riprova quando torna online.",
+      "runtime_recovery": "L'agente è stato riavviato prima di poter finire. Riprova.",
+      "manual": "Questa risposta è stata annullata.",
+      "skill_bundle_unavailable": "Non è stato possibile scaricare le skill dell'agente, quindi non è nemmeno partito. Di solito è un problema di connessione: riprova.",
+      "runtime_cli_timeout": "The local OpenClaw CLI didn't answer in time, so this run never started. It's a local startup timeout, not a network problem — retrying won't help until the CLI gets faster or the timeout is raised (MULTICA_OPENCLAW_CLI_TIMEOUT).",
+      "provider_network": "La connessione al fornitore del modello è caduta prima che la risposta finisse. Controlla la rete e riprova.",
+      "provider_auth_or_access": "L'account del modello dell'agente non è più autenticato. Accedi di nuovo, poi riprova.",
+      "provider_quota_limit": "L'account del modello dell'agente ha esaurito il credito. Ricaricalo o cambia account, poi riprova.",
+      "provider_capacity_or_rate_limit": "Il fornitore del modello è occupato o sta limitando questo account. Riprova tra un momento.",
+      "context_overflow": "Questa conversazione è diventata troppo lunga per il modello. Aprine una nuova, o spezza la richiesta in passi più piccoli.",
+      "runtime_missing_executable": "La CLI dell'agente non si trova su questa macchina. Verifica che sia installata e nel PATH, poi riprova.",
+      "runtime_version_unsupported": "La CLI dell'agente è troppo vecchia per questo runtime. Aggiornala, poi riprova.",
+      "fallback": "Qualcosa è andato storto e l'agente non è riuscito a finire la risposta. Riprova."
+    },
+    "tools_one": "{{count}} strumento",
+    "tools_other": "{{count}} strumenti",
+    "tool_result_named": "risultato di {{tool}}: ",
+    "tool_result_unnamed": "risultato: ",
+    "process_steps_one": "{{count}} passo",
+    "process_steps_other": "{{count}} passi",
+    "copy_action": "Copia",
+    "copied_toast": "Copiato",
+    "copy_failed_toast": "Copia non riuscita",
+    "loading_older": "Caricamento dei messaggi precedenti…",
+    "quick_actions_heading": "Domande di seguito",
+    "quick_actions_regenerate": "Rigenera i suggerimenti",
+    "quick_actions_regenerate_failed": "Non è stato possibile aggiornare i suggerimenti. Riprova."
+  },
+  "session_history": {
+    "untitled": "Senza titolo",
+    "time": {
+      "just_now": "adesso",
+      "minutes": "{{count}} min fa",
+      "hours": "{{count}} h fa",
+      "days": "{{count}} g fa"
+    },
+    "row_delete_aria": "Elimina la sessione di chat",
+    "row_rename_aria": "Rinomina la sessione di chat",
+    "row_stop_aria": "Ferma l'esecuzione in corso",
+    "stop_action": "Ferma",
+    "row_subtitle": {
+      "working": "Al lavoro",
+      "completed": "Completata",
+      "new_reply": "Nuova risposta"
+    },
+    "stop_dialog": {
+      "title": "Fermare questa esecuzione?",
+      "description_with_title": "Annulla la task dell'agente in «{{title}}». Quanto già prodotto resta nella chat.",
+      "description_default": "Annulla la task dell'agente in corso. Quanto già prodotto resta nella chat.",
+      "cancel": "Lascia in esecuzione",
+      "confirm": "Ferma l'esecuzione",
+      "confirming": "Arresto..."
+    },
+    "delete_dialog": {
+      "title": "Elimina la sessione di chat",
+      "description_with_title": "«{{title}}» e i suoi messaggi verranno rimossi definitivamente. L'azione non si può annullare.",
+      "description_default": "Questa sessione di chat e i suoi messaggi verranno rimossi definitivamente. L'azione non si può annullare.",
+      "cancel": "Annulla",
+      "confirm": "Elimina",
+      "confirming": "Eliminazione..."
+    },
+    "row_actions_aria": "Chat actions"
+  },
+  "window": {
+    "new_chat_tooltip": "Nuova chat",
+    "restore_tooltip": "Ripristina",
+    "expand_tooltip": "Ingrandisci",
+    "minimize_tooltip": "Riduci a icona",
+    "another_running": "Un'altra chat è in esecuzione",
+    "another_unread": "Un'altra chat ha risposte non lette",
+    "running": "In esecuzione",
+    "unread": "Non letta",
+    "no_previous": "Nessuna chat precedente",
+    "untitled": "Nuova chat",
+    "my_agents": "I miei agenti",
+    "others": "Altri",
+    "no_agents": "Nessun agente",
+    "history_group": "Cronologia delle chat",
+    "agent_filter_placeholder": "Cerca agenti...",
+    "agent_needs_runtime": "Serve un runtime",
+    "agent_needs_runtime_hint": "Collega un runtime prima di aprire una chat con questo agente"
+  },
+  "empty_state": {
+    "first_time_title": "Chatta con i tuoi agenti",
+    "first_time_intro": "✨ Conoscono il tuo workspace —",
+    "first_time_pillars": "issue, progetti, skill",
+    "first_time_pillars_suffix": ".",
+    "first_time_actions": "Chiedi un riassunto, pianifica la giornata, o passa una task veloce.",
+    "returning_title_named": "Ciao, sono {{name}}",
+    "returning_title_default": "Benvenuto in Multica",
+    "returning_subtitle": "Prova a chiedere",
+    "chat_with_named": "Chatta con {{name}}"
+  },
+  "starter_prompts": {
+    "list_open": "Elenca le mie task aperte per priorità",
+    "summarize_today": "Riassumi cosa ho fatto oggi",
+    "plan_next": "Pianifica su cosa lavorare adesso"
+  },
+  "onboarding_cards": {
+    "aria_label": "Ways to start",
+    "cta": "Start",
+    "board": {
+      "title": "Get a board up in minutes",
+      "desc": "Tell me the goal — I'll create the project, split the issues, and set priorities.",
+      "prompt": "Turn our current goals into a project board"
+    },
+    "delegate": {
+      "title": "Hand me one thing first",
+      "desc": "A quick piece of research, say — results come back as an issue and a report.",
+      "prompt": "Take one thing off my plate: run a quick piece of research and send the results back as a report"
+    },
+    "digest": {
+      "title": "Let the daily digest write itself",
+      "desc": "A morning summary of workspace progress, straight to your inbox.",
+      "prompt": "Set up a daily automation that posts a morning summary of workspace progress"
+    },
+    "digest_badge": "Daily 9:00"
+  },
+  "no_agent_banner": "Ti serve un agente per iniziare a chattare.",
+  "archived_agent_banner": "{{name}} è stato archiviato — questa conversazione è in sola lettura.",
+  "agent_access_revoked_banner": "You no longer have permission to run {{name}} — this conversation is read-only.",
+  "runtime_required_banner": {
+    "fallback_name": "L'agente",
+    "message": "A {{name}} serve un runtime prima di poter rispondere.",
+    "action": "Collega un runtime"
+  },
+  "offline_banner": {
+    "fallback_name": "l'agente",
+    "unstable": "La connessione di {{name}} è instabile — le risposte potrebbero tardare.",
+    "offline": "{{name}} è offline — il tuo messaggio verrà consegnato al suo ritorno."
+  },
+  "status_pill": {
+    "stages": {
+      "offline": "Offline",
+      "reconnecting": "Riconnessione",
+      "retrying": "Retrying",
+      "queued": "In coda",
+      "waiting_local_directory": "In attesa della cartella locale",
+      "waiting_local_directory_reason": "Waiting for {{reason}}",
+      "starting_up": "Avvio",
+      "thinking": "Sta pensando",
+      "typing": "Sta scrivendo"
+    },
+    "tools": {
+      "running_command": "Esegue un comando",
+      "reading_files": "Legge dei file",
+      "searching_code": "Cerca nel codice",
+      "making_edits": "Fa delle modifiche",
+      "searching_web": "Cerca sul web",
+      "fallback": "Al lavoro"
+    }
+  },
+  "list": {
+    "typing": "Sta scrivendo…",
+    "failed": "Invio non riuscito",
+    "you_prefix": "Tu: ",
+    "no_messages": "Nessun messaggio",
+    "no_response_preview": "Nessuna risposta scritta",
+    "quick_agents": "Agenti frequenti",
+    "add": "Aggiungi",
+    "add_agent": "Aggiungi un agente frequente",
+    "unpin_agent": "Togli dai frequenti",
+    "waiting": "In attesa di risposta",
+    "pin": "Fissa",
+    "unpin": "Togli dai fissati",
+    "pinned": "Fissata",
+    "archive": "Archivia",
+    "unarchive": "Togli dall'archivio",
+    "archived_title": "Archiviate",
+    "row_actions_aria": "Chat actions"
+  },
+  "header": {
+    "view_profile": "Vedi il profilo dell'agente",
+    "rename": "Rinomina la chat",
+    "archive": "Archivia la chat",
+    "unarchive": "Togli la chat dall'archivio",
+    "delete": "Elimina la chat"
+  }
+}

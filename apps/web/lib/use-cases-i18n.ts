@@ -14,6 +14,16 @@ type UseCaseText = {
 };
 
 export const useCaseText: Record<SupportedLocale, UseCaseText> = {
+  it: {
+    indexTitle: "Casi d'uso",
+    indexSubtitle:
+      "Guarda come i team organizzano persone e agenti insieme con Multica.",
+    indexMetadataTitle: "Casi d'uso",
+    indexMetadataDescription:
+      "Guarda come i team mettono persone e agenti a lavorare insieme con Multica.",
+    cardReadMore: "Leggi →",
+    tableOfContents: "In questa pagina",
+  },
   en: {
     indexTitle: "Use cases",
     indexSubtitle:

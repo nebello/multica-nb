@@ -1,0 +1,92 @@
+{
+  "page": {
+    "title": "Inbox",
+    "back": "Inbox"
+  },
+  "menu": {
+    "mark_all_read": "Segna tutto come letto",
+    "archive_all": "Archivia tutto",
+    "archive_all_read": "Archivia tutti i letti",
+    "archive_completed": "Archivia i completati"
+  },
+  "context_menu": {
+    "mark_read": "Segna come letto",
+    "mark_unread": "Segna come non letto",
+    "archive": "Archivia",
+    "unarchive": "Togli dall'archivio",
+    "open_in_new_tab": "Open in new tab"
+  },
+  "list": {
+    "empty": "Nessuna notifica",
+    "mark_done_tooltip": "Segna come fatto",
+    "archive_tooltip": "Archivia",
+    "time": {
+      "just_now": "adesso",
+      "minutes": "{{count}} min",
+      "hours": "{{count}} h",
+      "days": "{{count}} g"
+    },
+    "archived_title": "Archiviate",
+    "archived_empty": "Nessuna notifica archiviata",
+    "unarchive_tooltip": "Togli dall'archivio",
+    "actions_aria": "Notification actions"
+  },
+  "detail": {
+    "select_prompt": "Scegli una notifica per vederne i dettagli",
+    "empty": "La tua inbox è vuota",
+    "original_input": "Testo originale",
+    "edit_advanced": "Modifica nel modulo avanzato",
+    "archive": "Archivia",
+    "unarchive": "Togli dall'archivio"
+  },
+  "types": {
+    "issue_assigned": "Assegnata",
+    "issue_subscribed": "Seguita",
+    "unassigned": "Assegnazione rimossa",
+    "assignee_changed": "Assegnatario cambiato",
+    "status_changed": "Stato cambiato",
+    "priority_changed": "Priorità cambiata",
+    "start_date_changed": "Data di inizio cambiata",
+    "due_date_changed": "Scadenza cambiata",
+    "new_comment": "Nuovo commento",
+    "mentioned": "Menzionato",
+    "review_requested": "Revisione richiesta",
+    "task_completed": "Task completata",
+    "task_failed": "Task fallita",
+    "agent_blocked": "Agente bloccato",
+    "agent_completed": "Agente ha finito",
+    "reaction_added": "Ha reagito",
+    "quick_create_done": "Creata con un agente",
+    "quick_create_failed": "Creazione con agente non riuscita",
+    "quick_create_unconfirmed": "Creazione con agente non confermata"
+  },
+  "labels": {
+    "set_status_to": "Ha impostato lo stato a",
+    "set_priority_to": "Ha impostato la priorità a",
+    "assigned_to": "Assegnata a {{name}}",
+    "removed_assignee": "Ha rimosso l'assegnatario",
+    "set_start_date_to": "Ha impostato l'inizio al {{date}}",
+    "removed_start_date": "Ha rimosso la data di inizio",
+    "set_due_date_to": "Ha impostato la scadenza al {{date}}",
+    "removed_due_date": "Ha rimosso la scadenza",
+    "reacted_to_comment": "Ha reagito {{emoji}} al tuo commento",
+    "created_with_agent": "Creata con un agente: {{identifier}}",
+    "failed_with_detail": "Non riuscita: {{detail}}"
+  },
+  "toasts": {
+    "archived": "Notification archived",
+    "unarchived": "Notification restored"
+  },
+  "errors": {
+    "mark_read_failed": "Impossibile segnare come letto",
+    "mark_unread_failed": "Impossibile segnare come non letto",
+    "archive_failed": "Archiviazione non riuscita",
+    "mark_done_failed": "Impossibile segnare come fatto",
+    "mark_all_read_failed": "Impossibile segnare tutto come letto",
+    "archive_all_failed": "Impossibile archiviare tutto",
+    "archive_all_read_failed": "Impossibile archiviare gli elementi letti",
+    "archive_completed_failed": "Impossibile archiviare i completati",
+    "unarchive_failed": "Impossibile togliere dall'archivio",
+    "archived_load_failed": "Impossibile caricare le notifiche archiviate"
+  }
+}

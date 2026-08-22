@@ -1,0 +1,45 @@
+{
+  "page": {
+    "breadcrumb": "Le mie issue",
+    "workspace_fallback": "Workspace",
+    "empty_title": "Nessuna issue assegnata a te",
+    "empty_description": "Le issue che crei o che ti vengono assegnate compaiono qui."
+  },
+  "header": {
+    "scope": {
+      "all_label": "Tutte",
+      "all_description": "Assegnate a me, create da me, o che coinvolgono i miei agenti e le mie squadre",
+      "assigned_label": "Assegnate",
+      "assigned_description": "Issue assegnate a me",
+      "created_label": "Create",
+      "created_description": "Issue che ho creato",
+      "agents_label": "I miei agenti e squadre",
+      "agents_description": "Issue assegnate ai miei agenti"
+    },
+    "filter_button": "Filtra",
+    "filter_status": "Stato",
+    "filter_priority": "Priorità",
+    "issue_count_one": "{{count}} issue",
+    "issue_count_other": "{{count}} issue",
+    "reset_filters": "Azzera tutti i filtri",
+    "display_settings": "Impostazioni di visualizzazione",
+    "grouping": "Raggruppamento",
+    "group_status": "Stato",
+    "group_assignee": "Assegnatario",
+    "ordering": "Ordinamento",
+    "ascending": "Crescente",
+    "descending": "Decrescente",
+    "card_properties": "Proprietà della card",
+    "view_board": "Vista bacheca",
+    "view_list": "Vista elenco",
+    "view_swimlane": "Vista a corsie",
+    "view_label": "Vista",
+    "view_board_short": "Bacheca",
+    "view_list_short": "Elenco",
+    "view_swimlane_short": "Corsie",
+    "sort_manual": "Manuale"
+  },
+  "errors": {
+    "move_failed": "Failed to move issue"
+  }
+}

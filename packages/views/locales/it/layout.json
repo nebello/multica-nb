@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "inbox": "Inbox",
+    "chat": "Chat",
+    "my_issues": "Le mie issue",
+    "issues": "Issue",
+    "projects": "Progetti",
+    "autopilots": "Autopilot",
+    "agents": "Agenti",
+    "squads": "Squadre",
+    "usage": "Consumi",
+    "runtimes": "Runtime",
+    "skills": "Skill",
+    "settings": "Impostazioni"
+  },
+  "tab": {
+    "issue": "Issue",
+    "project": "Progetto",
+    "autopilot": "Autopilot",
+    "agent": "Agente",
+    "member": "Membro",
+    "squad": "Squadra",
+    "skill": "Skill",
+    "machine": "Macchina",
+    "runtime": "Runtime",
+    "attachment": "Allegato",
+    "create_agent": "Crea agente",
+    "unknown": "Pagina sconosciuta"
+  },
+  "help": {
+    "trigger": "Aiuto",
+    "download_desktop": "Desktop app",
+    "docs": "Documentazione",
+    "changelog": "Novità",
+    "discord": "Discord",
+    "feedback": "Feedback",
+    "server_version": "Versione del server {{version}}"
+  },
+  "workspace_loader": {
+    "loading_workspace": "Caricamento workspace…",
+    "loading_named_prefix": "Caricamento"
+  },
+  "sidebar": {
+    "unpin_tooltip": "Togli dai fissati",
+    "workspaces_label": "Workspace",
+    "create_workspace": "Crea workspace",
+    "pending_invitations_label": "Inviti in attesa",
+    "invitation_workspace_fallback": "Workspace",
+    "invitation_join": "Entra",
+    "invitation_decline": "Rifiuta",
+    "log_out": "Esci",
+    "new_issue": "Nuova issue",
+    "new_issue_shortcut": "C",
+    "pinned_label": "Fissati",
+    "workspace_group": "Workspace",
+    "configure_group": "Configurazione",
+    "unread_overflow": "99+",
+    "discord_card": {
+      "title": "Entra nel nostro Discord",
+      "dismiss": "Chiudi"
+    }
+  }
+}
