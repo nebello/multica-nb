@@ -82,6 +82,7 @@
     "copy_failed_toast": "Copia non riuscita",
     "loading_older": "Caricamento dei messaggi precedenti…",
     "quick_actions_heading": "Domande di seguito",
+    "quick_actions_aria": "Suggested follow-ups",
     "quick_actions_regenerate": "Rigenera i suggerimenti",
     "quick_actions_regenerate_failed": "Non è stato possibile aggiornare i suggerimenti. Riprova."
   },
@@ -150,10 +151,21 @@
     "returning_subtitle": "Prova a chiedere",
     "chat_with_named": "Chatta con {{name}}"
   },
-  "starter_prompts": {
-    "list_open": "Elenca le mie task aperte per priorità",
-    "summarize_today": "Riassumi cosa ho fatto oggi",
-    "plan_next": "Pianifica su cosa lavorare adesso"
+  "conversation_starters": {
+    "aria_label": "Conversation starters",
+    "capabilities": {
+      "label": "What can you help with?",
+      "prompt": "What are you best at helping with? Give me a concise overview."
+    },
+    "first_task": {
+      "label": "Suggest a first task",
+      "prompt": "Suggest three useful tasks I could delegate to you."
+    },
+    "recommend": {
+      "label": "Recommend an action",
+      "prompt": "Review what you know about my workspace and recommend a useful first action."
+    },
+    "customize": "Customize starters"
   },
   "onboarding_cards": {
     "aria_label": "Ways to start",

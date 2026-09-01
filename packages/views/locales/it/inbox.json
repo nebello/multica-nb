@@ -9,6 +9,19 @@
     "archive_all_read": "Archivia tutti i letti",
     "archive_completed": "Archivia i completati"
   },
+  "filters": {
+    "tooltip": "Filter inbox",
+    "active_count_one": "{{count}} active filter",
+    "active_count_other": "{{count}} active filters",
+    "status": "Status",
+    "priority": "Priority",
+    "from": "From",
+    "unread_only": "Unread only",
+    "notification_count_one": "{{count}} notification",
+    "notification_count_other": "{{count}} notifications",
+    "clear": "Clear filters",
+    "empty": "No notifications match your filters"
+  },
   "context_menu": {
     "mark_read": "Segna come letto",
     "mark_unread": "Segna come non letto",
@@ -35,6 +48,7 @@
     "select_prompt": "Scegli una notifica per vederne i dettagli",
     "empty": "La tua inbox è vuota",
     "original_input": "Testo originale",
+    "retry_with_context": "Retry with context",
     "edit_advanced": "Modifica nel modulo avanzato",
     "archive": "Archivia",
     "unarchive": "Togli dall'archivio"
@@ -74,10 +88,13 @@
     "failed_with_detail": "Non riuscita: {{detail}}"
   },
   "toasts": {
+    "source_context_retry_started": "Retry started with the original context",
     "archived": "Notification archived",
     "unarchived": "Notification restored"
   },
   "errors": {
+    "source_context_retry_failed": "Could not retry with the original context",
+    "source_context_retry_unavailable": "This context can no longer be retried. Start again from the branch point.",
     "mark_read_failed": "Impossibile segnare come letto",
     "mark_unread_failed": "Impossibile segnare come non letto",
     "archive_failed": "Archiviazione non riuscita",
