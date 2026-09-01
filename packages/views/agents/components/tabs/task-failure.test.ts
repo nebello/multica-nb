@@ -4,6 +4,7 @@ import { createI18n } from "@multica/core/i18n/react";
 import type { SupportedLocale } from "@multica/core/i18n";
 import { describe, expect, it } from "vitest";
 import enAgents from "../../../locales/en/agents.json";
+import itAgents from "../../../locales/it/agents.json";
 import jaAgents from "../../../locales/ja/agents.json";
 import koAgents from "../../../locales/ko/agents.json";
 import zhHansAgents from "../../../locales/zh-Hans/agents.json";
@@ -16,6 +17,7 @@ import {
 
 const AGENT_RESOURCES = {
   en: enAgents,
+  it: itAgents,
   "zh-Hans": zhHansAgents,
   ja: jaAgents,
   ko: koAgents,
@@ -74,6 +76,10 @@ describe("cancelReasonLabel", () => {
   it("localizes a generic system cancellation in every supported locale", () => {
     const expected: Record<SupportedLocale, string> = {
       en: "Cancelled by the system",
+      // Letta dal bundle invece che scritta a mano: it/ e' rigenerato a ogni
+      // aggiornamento e le stringhe non ancora tradotte ricadono sull'inglese,
+      // quindi un letterale qui si romperebbe alla prima traduzione vera.
+      it: itAgents.task_failure.cancelled_by_system,
       "zh-Hans": "系统已取消",
       ja: "システムによってキャンセルされました",
       ko: "시스템에서 취소함",
