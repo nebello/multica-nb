@@ -2,5 +2,10 @@
   "attach_file": "Allega file",
   "toggle_sidebar": "Mostra o nascondi la barra laterale",
   "copy_code": "Copia il codice",
-  "plain_text": "testo semplice"
+  "plain_text": "testo semplice",
+  "error_boundary": {
+    "title": "Something went wrong displaying this section.",
+    "description": "An unexpected error occurred.",
+    "try_again": "Try again"
+  }
 }

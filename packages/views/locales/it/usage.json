@@ -46,7 +46,7 @@
     "partial_label": "{{range}} (parziale · {{covered}} giorni su 7)"
   },
   "errors": {
-    "kpi_failed_label": "Failed tasks · {{days}}D",
+    "kpi_failed_label": "Failed runs · {{days}}D",
     "kpi_failed_hint": "Of {{total}} runs",
     "kpi_rate_label": "Failure rate · {{days}}D",
     "kpi_agents_label": "Agents affected · {{days}}D",

@@ -50,6 +50,8 @@
     "original_input": "Testo originale",
     "retry_with_context": "Retry with context",
     "edit_advanced": "Modifica nel modulo avanzato",
+    "autopilot_quota_exceeded_body": "This workspace has reached its limit of {{limit}} autopilot runs for the current period. Further autopilot runs will not start until the allowance resets {{resetAt}}.",
+    "autopilot_quota_upgrade": "View upgrade options",
     "archive": "Archivia",
     "unarchive": "Togli dall'archivio"
   },
@@ -72,7 +74,9 @@
     "reaction_added": "Ha reagito",
     "quick_create_done": "Creata con un agente",
     "quick_create_failed": "Creazione con agente non riuscita",
-    "quick_create_unconfirmed": "Creazione con agente non confermata"
+    "quick_create_unconfirmed": "Creazione con agente non confermata",
+    "autopilot_paused": "Autopilot paused",
+    "autopilot_quota_exceeded": "Autopilot run limit reached"
   },
   "labels": {
     "set_status_to": "Ha impostato lo stato a",
@@ -85,7 +89,8 @@
     "removed_due_date": "Ha rimosso la scadenza",
     "reacted_to_comment": "Ha reagito {{emoji}} al tuo commento",
     "created_with_agent": "Creata con un agente: {{identifier}}",
-    "failed_with_detail": "Non riuscita: {{detail}}"
+    "failed_with_detail": "Non riuscita: {{detail}}",
+    "autopilot_quota_blocked": "Run blocked because the limit was reached"
   },
   "toasts": {
     "source_context_retry_started": "Retry started with the original context",

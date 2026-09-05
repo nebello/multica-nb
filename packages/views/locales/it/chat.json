@@ -62,6 +62,7 @@
       "manual": "Questa risposta è stata annullata.",
       "skill_bundle_unavailable": "Non è stato possibile scaricare le skill dell'agente, quindi non è nemmeno partito. Di solito è un problema di connessione: riprova.",
       "runtime_cli_timeout": "The local OpenClaw CLI didn't answer in time, so this run never started. It's a local startup timeout, not a network problem — retrying won't help until the CLI gets faster or the timeout is raised (MULTICA_OPENCLAW_CLI_TIMEOUT).",
+      "environment_prepare_failed": "The machine running the agent couldn't set this run up, so it never started. The error below says what failed there — often disk space, a permission, a folder still in use, or a local config that couldn't be read. It isn't the agent or the model provider.",
       "provider_network": "La connessione al fornitore del modello è caduta prima che la risposta finisse. Controlla la rete e riprova.",
       "provider_auth_or_access": "L'account del modello dell'agente non è più autenticato. Accedi di nuovo, poi riprova.",
       "provider_quota_limit": "L'account del modello dell'agente ha esaurito il credito. Ricaricalo o cambia account, poi riprova.",
@@ -158,8 +159,8 @@
       "prompt": "What are you best at helping with? Give me a concise overview."
     },
     "first_task": {
-      "label": "Suggest a first task",
-      "prompt": "Suggest three useful tasks I could delegate to you."
+      "label": "Suggest a first issue",
+      "prompt": "Suggest three useful issues I could assign to you."
     },
     "recommend": {
       "label": "Recommend an action",
